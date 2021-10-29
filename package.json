@@ -11,5 +11,14 @@
   "dependencies": {
     "express": "^4.17.1",
     "reactjs": "^1.0.0"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jmkaufman/Portfolio.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jmkaufman/Portfolio/issues"
+  },
+  "homepage": "https://github.com/jmkaufman/Portfolio#readme"
 }
