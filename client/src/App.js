@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Home from './Home';
+import WorkHistory from './WorkHistory';
+import Projects from './Projects';
 
 function App() {
   const [data, setData] = useState(null);
@@ -29,6 +32,9 @@ function App() {
         </a>
       </header>
       <p>{!data ? "Loading..." : data}</p>
+      <Home/>
+      <WorkHistory/>
+      <Projects/>
     </div>
   );
 }
