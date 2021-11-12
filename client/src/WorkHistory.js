@@ -11,11 +11,11 @@ function WorkHistory() {
       .catch((err) => console.log(err));
   }, []);
 
-  const createWorkHistory = (jsonData) => {
+  const createWorkHistory = () => {
     let components = [];
     let id = 0;
 
-    for (let entry of jsonData.workHistory) {
+    for (let entry of data.workHistory) {
       components.push(<WorkHistoryBlock key={id++} entry={entry}/>);
     }
 
@@ -25,7 +25,7 @@ function WorkHistory() {
   return (
     <div>
       <h1>WorkHistory</h1>
-      <div>{!data ? 'Loading...' : createWorkHistory(data)}</div>
+      <div>{!data ? 'Loading...' : createWorkHistory()}</div>
     </div>
   );
 }
