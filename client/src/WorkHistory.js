@@ -24,7 +24,7 @@ function WorkHistory() {
 
   return (
     <div>
-      <h1>WorkHistory</h1>
+      <h2>WorkHistory</h2>
       <div>{!data ? 'Loading...' : createWorkHistory()}</div>
     </div>
   );

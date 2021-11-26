@@ -1,0 +1,21 @@
+.history-block {
+  border: 1px solid #000;
+  margin: 0px auto 5px;
+  width: 35vw;
+  padding: 0vh 0vw;
+  overflow-wrap: break-word;
+}
+
+.project-block {
+  border: 1px solid #000;
+  margin: 0px auto 5px;
+  width: 25vw;
+  padding: 0vh 0vw;
+  overflow-wrap: break-word;
+}
+
+.project-block-layout{
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0px 20vw;
+}
