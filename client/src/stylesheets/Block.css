@@ -16,6 +16,7 @@
 
 .project-block-layout{
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: row-reverse;
+  flex-wrap: wrap-reverse;
   margin: 0px 20vw;
 }
