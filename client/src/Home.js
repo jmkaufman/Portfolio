@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import './Home.css';
+import './stylesheets/Home.css';
 
 function Home() {
   const [data, setData] = useState('');
@@ -14,7 +14,7 @@ function Home() {
   return (
     <div>
       <h1>Jason Kaufman</h1>
-      <h2 id='home-description'>{data}</h2>
+      <p id='home-description'>{data}</p>
     </div>
   );
 }

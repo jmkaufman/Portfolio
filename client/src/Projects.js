@@ -23,7 +23,10 @@ function Projects() {
   }
   
   return (
-    <div>{!data ? 'Loading...' : createProjects()}</div>
+    <div>
+      <h2>PersonalProjects</h2>
+      <div className='project-block-layout'>{!data ? 'Loading...' : createProjects()}</div>
+    </div>
   );
 }
 
