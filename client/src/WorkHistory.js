@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import WorkHistoryBlock from './WorkHistoryBlock';
+import './stylesheets/Block.css';
 
 function WorkHistory() {
   const [data, setData] = useState(null);
@@ -25,7 +26,9 @@ function WorkHistory() {
   return (
     <div>
       <h2>WorkHistory</h2>
+      <div className='triangle'/>
       <div>{!data ? 'Loading...' : createWorkHistory()}</div>
+      <div className='triangle'/>
     </div>
   );
 }
