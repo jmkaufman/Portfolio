@@ -24,7 +24,7 @@ function WorkHistory() {
   }
 
   return (
-    <div>
+    <div className='workhistory'>
       <h2>WorkHistory</h2>
       <div className='triangle'/>
       <div>{!data ? 'Loading...' : createWorkHistory()}</div>

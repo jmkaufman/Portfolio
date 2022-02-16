@@ -10,7 +10,7 @@ function WorkHistoryBlock(props) {
 
       infoBlock.push(
       <div key={id++}>
-        <span className='line'/>
+        <div className='line'/>
         <div>
           <h4>{projects.title}</h4>
           <h5>{projects.startDate} - {projects.endDate}</h5>
