@@ -35,7 +35,7 @@ function WorkHistoryBlock(props) {
   return (
     <div className='history-block-wrapper'>
       <div className='history-block'>
-        <span className='circle'/>
+        <div className='circle'/>
         <h3>{props.entry.companyName}</h3>
         <div>{organizeProjects()}</div>
       </div>
