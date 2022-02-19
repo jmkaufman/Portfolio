@@ -18,44 +18,6 @@
           "frameworks": "Linux, Java Swing, Git"
         }
       ]
-    },
-    {
-      "companyName": "DUMMY Company Name",
-      "projects": [
-        {
-          "title": "DUMMY Title",
-          "startDate": "01/2015",
-          "endDate": "01/2020",
-          "languages": "",
-          "frameworks": ""
-        },
-        {
-          "title": "DUMMY Title",
-          "startDate": "01/2010",
-          "endDate": "01/2015",
-          "languages": "DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY",
-          "frameworks": "DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY"
-        }
-      ]
-    },
-    {
-      "companyName": "DUMMY Company Name",
-      "projects": [
-        {
-          "title": "DUMMY Title",
-          "startDate": "01/2005",
-          "endDate": "01/2010",
-          "languages": "DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY",
-          "frameworks": "DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY"
-        },
-        {
-          "title": "DUMMY Title",
-          "startDate": "01/2000",
-          "endDate": "01/2005",
-          "languages": "",
-          "frameworks": ""
-        }
-      ]
     }
   ]
 }
