@@ -1,53 +1,21 @@
 {
   "workHistory": [
     {
-      "companyName": "KAB Laboratories, Inc",
+      "companyName": "Epsilon C5I, Inc",
       "projects": [
         {
-          "title": "Software Engineer",
+          "title": "Software Engineer, Raytheon GPNTS",
           "startDate": "05/2020",
           "endDate": "Present",
-          "description": "I work with an Agile cross-disciplinary team providing real-time software solutions with C++, C#, Python, and Java. I built a Jenkins Pipeline stage in Groovy that used the Linux shell to validate 40 XML files in 2 Git repositories. I implemented a REST API call in C# that GPNTS automation tests use to retrieve data from another service."
+          "languages": "C++, Java, Python, C#",
+          "frameworks": "Linux, Git, Jenkins, Selenium WebDriver, Google Test"
         },
         {
-          "title": "Software Engineer",
+          "title": "Software Engineer, Raytheon SSDS",
           "startDate": "07/2018",
           "endDate": "04/2020",
-          "description": "I participated in a highly collaborative Agile environment and developed real-time software solutions in C++ and Java. I implemented 3 messages in C++ that provided data to C++ services and the Java frontend."
-        }
-      ]
-    },
-    {
-      "companyName": "DUMMY Company Name",
-      "projects": [
-        {
-          "title": "DUMMY Title",
-          "startDate": "01/2015",
-          "endDate": "01/2020",
-          "description": "DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY"
-        },
-        {
-          "title": "DUMMY Title",
-          "startDate": "01/2010",
-          "endDate": "01/2015",
-          "description": "DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY"
-        }
-      ]
-    },
-    {
-      "companyName": "DUMMY Company Name",
-      "projects": [
-        {
-          "title": "DUMMY Title",
-          "startDate": "01/2005",
-          "endDate": "01/2010",
-          "description": "DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY"
-        },
-        {
-          "title": "DUMMY Title",
-          "startDate": "01/2000",
-          "endDate": "01/2005",
-          "description": "DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY"
+          "languages": "C++, Java",
+          "frameworks": "Linux, Java Swing, Git"
         }
       ]
     }
