@@ -9,9 +9,9 @@ function WorkHistoryBlock(props) {
       let infoBlock = [];
 
       infoBlock.push(
-      <div key={id++}>
+      <div className='project' key={id++}>
         <div className='line'/>
-        <div>
+        <div className='content'>
           <h4>{projects.title}</h4>
           <h5>{projects.startDate} - {projects.endDate}</h5>
           <div className='info'>
@@ -33,12 +33,10 @@ function WorkHistoryBlock(props) {
   };
 
   return (
-    <div className='history-block-wrapper'>
-      <div className='history-block'>
-        <div className='circle'/>
-        <h3>{props.entry.companyName}</h3>
-        <div>{organizeProjects()}</div>
-      </div>
+    <div className='history-block'>
+      <div className='circle'/>
+      <h3>{props.entry.companyName}</h3>
+      <div>{organizeProjects()}</div>
     </div>
   );
 }
