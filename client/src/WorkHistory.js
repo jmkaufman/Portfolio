@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import WorkHistoryBlock from './WorkHistoryBlock';
-import './stylesheets/Block.css';
+import './stylesheets/WorkHistory.css';
 
 function WorkHistory() {
   const [data, setData] = useState(null);

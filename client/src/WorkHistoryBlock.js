@@ -1,5 +1,3 @@
-import './stylesheets/Block.css';
-
 function WorkHistoryBlock(props) {
   const organizeProjects = () => {
     let projectsComponents = [];

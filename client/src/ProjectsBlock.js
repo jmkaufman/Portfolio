@@ -1,5 +1,3 @@
-import './stylesheets/Block.css';
-
 function ProjectsBlock(props){
   return (
     <div className='project-block'>

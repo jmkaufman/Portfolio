@@ -1,5 +1,6 @@
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import ProjectsBlock from './ProjectsBlock';
+import './stylesheets/Projects.css';
 
 function Projects() {
   const [data, setData] = useState(null);
@@ -24,7 +25,7 @@ function Projects() {
   
   return (
     <div>
-      <h2>PersonalProjects</h2>
+      <h2>Personal Projects</h2>
       <div className='project-block-layout'>{!data ? 'Loading...' : createProjects()}</div>
     </div>
   );
