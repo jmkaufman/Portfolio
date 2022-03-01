@@ -1,0 +1,3 @@
+[submodule "client/src/external/Pong"]
+	path = client/src/external/Pong
+	url = https://github.com/jmkaufman/Pong.git
