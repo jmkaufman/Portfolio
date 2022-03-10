@@ -1,18 +1,22 @@
-import './stylesheets/App.css';
-import Home from './Home';
-import WorkHistory from './WorkHistory';
-import Projects from './Projects';
+import {
+  React,
+} from 'react';
 
-function App() {
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+} from "react-router-dom";
+
+import Home from './Home';
+
+function App () {
   return (
-    <div className="App">
-      <header className="App-header">
-        Jason Text
-      </header>
-      <Home/>
-      <WorkHistory/>
-      <Projects/>
-    </div>
+    <Router>
+      <Routes>
+        <Route exact path='/' element={<Home/>}/>
+      </Routes>
+    </Router>
   );
 }
 

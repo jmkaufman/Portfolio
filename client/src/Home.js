@@ -1,22 +1,20 @@
-import { useState, useEffect } from 'react';
 import './stylesheets/Home.css';
+import About from './About';
+import WorkHistory from './WorkHistory';
+import Projects from './Projects';
 
-function Home() {
-  const [data, setData] = useState('');
-
-  useEffect(() => {
-    fetch('AboutMe.txt')
-      .then((res) => res.text())
-      .then((text) => setData(text))
-      .catch((err) => console.log(err));
-  });
-
+function Home(props) {
   return (
-    <div>
-      <h1>Jason Kaufman</h1>
-      <p id='home-description'>{data}</p>
+    <div className="Home">
+      <header className="Home-header">
+        Jason Text
+      </header>
+      <About/>
+      <WorkHistory/>
+      <Projects/>
     </div>
   );
 }
 
 export default Home;
+// Rename to Home, make a new file for App. App will determine which page we are looking at (home or a single project) via props to the Projects component.
