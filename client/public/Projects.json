@@ -3,43 +3,43 @@
     {
       "title": "Pong",
       "description": "Pong built entirely in React",
-      "route": "https://www.jasonmkaufman.com/",
+      "route": "pong",
       "repo": "https://github.com/jmkaufman/Pong"
     },
     {
       "title": "DUMMY",
       "description": "DUMMY Description",
-      "route": "https://www.jasonmkaufman.com/",
+      "route": "dummy1",
       "repo": "DUMMY repository"
     },
     {
       "title": "DUMMY",
       "description": "DUMMY Description",
-      "route": "https://www.jasonmkaufman.com/",
+      "route": "dummy2",
       "repo": "DUMMY repository"
     },
     {
       "title": "DUMMY",
       "description": "DUMMY Description",
-      "route": "https://www.jasonmkaufman.com/",
+      "route": "dummy3",
       "repo": "DUMMY repository"
     },
     {
       "title": "DUMMY",
       "description": "DUMMY Description",
-      "route": "https://www.jasonmkaufman.com/",
+      "route": "dummy4",
       "repo": "DUMMY repository"
     },
     {
       "title": "DUMMY",
       "description": "DUMMY Description",
-      "route": "https://www.jasonmkaufman.com/",
+      "route": "dummy5",
       "repo": "DUMMY repository"
     },
     {
       "title": "DUMMY",
       "description": "DUMMY Description",
-      "route": "https://www.jasonmkaufman.com/",
+      "route": "dummy6",
       "repo": "DUMMY repository"
     }
   ]
