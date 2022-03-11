@@ -1,22 +1,12 @@
-import { useState, useEffect } from 'react';
 import ProjectsBlock from './ProjectsBlock';
 import './stylesheets/Projects.css';
 
-function Projects() {
-  const [data, setData] = useState(null);
-
-  useEffect(() => {
-    fetch('Projects.json')
-      .then((res) => res.json())
-      .then((_data) => setData(_data))
-      .catch((err) => console.log(err));
-  }, []);
-
+function Projects(props) {
   const createProjects = () => {
     let components = [];
     let id = 0;
 
-    for (let entry of data.projects) {
+    for (let entry of props.projectsData.projects) {
       components.push(<ProjectsBlock key={id++} entry={entry}/>);
     }
 
@@ -26,7 +16,7 @@ function Projects() {
   return (
     <div className='projects'>
       <h2>Personal Projects</h2>
-      <div className='project-block-layout'>{!data ? 'Loading...' : createProjects()}</div>
+      <div className='project-block-layout'>{!props.projectsData ? 'Loading...' : createProjects()}</div>
     </div>
   );
 }
