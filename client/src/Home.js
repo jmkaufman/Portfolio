@@ -6,9 +6,7 @@ import Projects from './Projects';
 function Home(props) {
   return (
     <div className="Home">
-      <header className="Home-header">
-        Jason Text
-      </header>
+      <header className="Home-header"/>
       <About/>
       <WorkHistory/>
       <Projects projectsData={props.projectsData}/>
