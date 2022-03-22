@@ -2,9 +2,9 @@ import './stylesheets/About.css';
 
 function About() {
   return (
-    <div>
+    <div id='home-description'>
       <h1>Jason Kaufman</h1>
-      <p id='home-description'>
+      <p>
         A versatile software engineer with experience in real-time systems 
         branching out into full-stack technologies.
         <br/>

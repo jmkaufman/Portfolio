@@ -1,0 +1,44 @@
+.Home-header {
+  position: fixed;
+  top: 0px;
+  height: 50px;
+  width: 100%;
+  z-index: 150;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  border-bottom: 2px solid black;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.contact-info .email {
+  position: relative;
+  margin: auto;
+  color: #444;
+}
+
+.contact-info .email:hover {
+  position: relative;
+  margin: auto;
+  color: black;
+}
+
+.contact-info .linkedin {
+  position: relative;
+  margin: auto auto auto 10px;
+  color: #0a66c2;
+}
+
+.contact-info a {
+  text-decoration: none;
+  font-size: 0;
+}
