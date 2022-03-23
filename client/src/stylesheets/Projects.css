@@ -9,6 +9,7 @@
 .project-block {
   border: 1px solid #000;
   margin: 0px auto 5px;
+  padding-bottom: 10px;
   width: 40%;
   overflow-wrap: break-word;
 }
