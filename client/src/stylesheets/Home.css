@@ -4,6 +4,11 @@
 
 .page-content {
   position: relative;
-  top: 40px;
-  z-index: 100;
+  margin: auto;
+  padding-top: 60px;
+  padding-bottom: 40px;
+  width: 800px;
+  z-index: 50;
+
+  background-color:#f8f0e3;
 }

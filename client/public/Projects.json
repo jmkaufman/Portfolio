@@ -5,42 +5,6 @@
       "description": "Pong built entirely in React",
       "route": "pong",
       "repo": "https://github.com/jmkaufman/Pong"
-    },
-    {
-      "title": "DUMMY",
-      "description": "DUMMY Description",
-      "route": "dummy1",
-      "repo": "DUMMY repository"
-    },
-    {
-      "title": "DUMMY",
-      "description": "DUMMY Description",
-      "route": "dummy2",
-      "repo": "DUMMY repository"
-    },
-    {
-      "title": "DUMMY",
-      "description": "DUMMY Description",
-      "route": "dummy3",
-      "repo": "DUMMY repository"
-    },
-    {
-      "title": "DUMMY",
-      "description": "DUMMY Description",
-      "route": "dummy4",
-      "repo": "DUMMY repository"
-    },
-    {
-      "title": "DUMMY",
-      "description": "DUMMY Description",
-      "route": "dummy5",
-      "repo": "DUMMY repository"
-    },
-    {
-      "title": "DUMMY",
-      "description": "DUMMY Description",
-      "route": "dummy6",
-      "repo": "DUMMY repository"
     }
   ]
 }
