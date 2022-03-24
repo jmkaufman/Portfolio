@@ -23,7 +23,7 @@ function App () {
 
   // Get data from Projects.json on load.
   useEffect(() => {
-    fetch('Projects.json')
+    fetch('/data/Projects.json')
       .then((res) => res.json())
       .then((_data) => setData(_data))
       .catch((err) => console.log(err));

@@ -8,7 +8,7 @@ function WorkHistory() {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    fetch('WorkHistory.json')
+    fetch('/data/WorkHistory.json')
       .then((res) => res.json())
       .then((_data) => setData(_data))
       .catch((err) => console.log(err));
