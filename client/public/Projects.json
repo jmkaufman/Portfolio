@@ -3,6 +3,7 @@
     {
       "title": "Pong",
       "description": "Pong built entirely in React",
+      "thumbnail": "Pong_Thumbnail.png",
       "route": "pong",
       "repo": "https://github.com/jmkaufman/Pong"
     }
