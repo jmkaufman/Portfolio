@@ -1,21 +1,26 @@
 .projects {
   margin: auto;
   position: relative;
-  width: 750px;
+  width: 800px;
   display: flex;
   flex-direction: column;
-}
-
-.project-block {
-  border: 1px solid #000;
-  margin: 0px auto 5px;
-  padding-bottom: 10px;
-  width: 40%;
-  overflow-wrap: break-word;
 }
 
 .project-block-layout{
   display: flex;
   flex-direction: row-reverse;
   flex-wrap: wrap-reverse;
+}
+
+.project-block {
+  margin: 0px auto 20px;
+  padding-bottom: 10px;
+  width: 375px;
+  overflow-wrap: break-word;
+
+  border: 3px solid #000;
+}
+
+.thumbnail {
+  border: 1px solid #000;
 }
