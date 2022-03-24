@@ -1,5 +1,6 @@
-import ProjectsBlock from './ProjectsBlock';
 import './stylesheets/Projects.css';
+
+import ProjectsBlock from './ProjectsBlock';
 
 function Projects(props) {
   const createProjects = () => {
