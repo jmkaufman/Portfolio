@@ -1,3 +1,5 @@
+import './stylesheets/App.css';
+
 import {
   React, 
   useState, 
