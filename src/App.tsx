@@ -1,7 +1,6 @@
 import './stylesheets/App.css';
 
 import {
-  React, 
   useState, 
   useEffect, 
   lazy, 
@@ -16,35 +15,45 @@ import {
 
 import Home from './Home';
 
+type ProjectModel = {
+  projects: {
+    title: string,
+    description: string,
+    thumbnail: string,
+    route: string,
+    repo: string
+  }[]
+}
+
 function App () {
   // State variable declarations.
-  const [data, setData] = useState(null);
-  const [paths, addToPaths] = useState([]);
+  const [projectsData, setProjectsData] = useState<ProjectModel>();
+  const [paths, addToPaths] = useState<string[]>([]);
 
   // Get data from Projects.json on load.
   useEffect(() => {
     fetch('/data/Projects.json')
       .then((res) => res.json())
-      .then((_data) => setData(_data))
+      .then((_data) => setProjectsData(_data))
       .catch((err) => console.log(err));
   }, []);
 
   // Fill the paths state variable after data has been successfully updated.
   useEffect(() => {
-    if(data){
-      let listOfPaths = [];
+    if(projectsData){
+      let listOfPaths: string[] = [];
 
-      for(let entry of data.projects)
+      for(let entry of projectsData.projects)
       {
         listOfPaths.push(entry.route);
       }
 
       addToPaths(listOfPaths);
     }
-  }, [data]);
+  }, [projectsData]);
 
   // Creates a component using dynamic importing via React.lazy.
-  const createGenericComponent = (path) => {
+  const createGenericComponent = (path: string) => {
     const upperCasePath = path.charAt(0).toUpperCase() + path.slice(1);
     const NewComponent = lazy(() => import('./external/' + upperCasePath + '/src/App'));
 
@@ -76,8 +85,10 @@ function App () {
   return (
     <Router>
       <Routes>
-        <Route exact path='/' element={<Home projectsData={data}/>}/>
-        {!data ? console.log('Projects not loaded, no additional routes created') : createNewRoutes()}
+        <>
+          <Route path='/' element={<Home projectsData={projectsData}/>}/>
+          {!projectsData ? console.log('Projects not loaded, no additional routes created') : createNewRoutes()}
+        </>
       </Routes>
     </Router>
   );

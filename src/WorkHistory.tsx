@@ -22,24 +22,7 @@ interface Project {
 }
 
 function WorkHistory() {
-  const [workHistoryData, setWorkHistoryData] = useState<WorkHistoryModel>(
-    {
-      workHistory: [
-        {
-          companyName: "",
-          projects: [
-            {
-              title: "",
-              startDate: "",
-              endDate: "",
-              languages: "",
-              frameworks: ""
-            }
-          ]
-        }
-      ]
-    }
-  );
+  const [workHistoryData, setWorkHistoryData] = useState<WorkHistoryModel>();
 
   useEffect(() => {
     fetch('/data/WorkHistory.json')

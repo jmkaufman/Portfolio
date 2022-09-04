@@ -22,7 +22,7 @@ function WorkHistoryBlock(props: WorkHistoryBlockProps) {
     for (let project of props.entry.projects) {
       let infoBlock = [];
       const { title, startDate, endDate, languages, frameworks } = project;
-      console.log(title, startDate, endDate, languages, frameworks);
+
       infoBlock.push(
       <div className='project' key={id++}>
         <div className='line'/>
