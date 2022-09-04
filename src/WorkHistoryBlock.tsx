@@ -1,24 +1,41 @@
-function WorkHistoryBlock(props) {
+type WorkHistoryBlockProps = {
+  entry: 
+    {
+      companyName: string,
+      projects: Project[]
+    }
+}
+
+interface Project {
+  title: string,
+  startDate: string,
+  endDate: string,
+  languages: string,
+  frameworks: string
+}
+
+function WorkHistoryBlock(props: WorkHistoryBlockProps) {
   const organizeProjects = () => {
     let projectsComponents = [];
     let id = 0;
 
-    for (let projects of props.entry.projects) {
+    for (let project of props.entry.projects) {
       let infoBlock = [];
-
+      const { title, startDate, endDate, languages, frameworks } = project;
+      console.log(title, startDate, endDate, languages, frameworks);
       infoBlock.push(
       <div className='project' key={id++}>
         <div className='line'/>
         <div className='content'>
-          <h4>{projects.title}</h4>
-          <h5>{projects.startDate} - {projects.endDate}</h5>
+          <h4>{title}</h4>
+          <h5>{startDate} - {endDate}</h5>
           <div className='info'>
             <p>Languages: </p>
-            <div className='languages'>{projects.languages}</div>
+            <div className='languages'>{languages}</div>
           </div>
           <div className='info'>
             <p>Tools: </p>
-            <div className='tools'>{projects.frameworks}</div>
+            <div className='tools'>{frameworks}</div>
           </div>
         </div>
       </div>

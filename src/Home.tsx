@@ -5,7 +5,11 @@ import About from './About';
 import WorkHistory from './WorkHistory';
 import Projects from './Projects';
 
-function Home(props) {
+type HomeProps = {
+  projectsData: any
+}
+
+function Home(props: HomeProps) {
   return (
     <div className="Home">
       <TopBar/>

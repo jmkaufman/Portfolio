@@ -2,7 +2,17 @@ import {
   Link,
 } from "react-router-dom";
 
-function ProjectsBlock(props){
+type ProjectsBlockProps = {
+  entry: {
+    title: string,
+    description: string,
+    thumbnail: string,
+    route: string,
+    repo: string
+  }
+}
+
+function ProjectsBlock(props: ProjectsBlockProps){
   return (
     <div className='project-block'>
       <h3>{props.entry.title}</h3>

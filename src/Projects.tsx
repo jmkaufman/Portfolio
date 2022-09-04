@@ -2,7 +2,21 @@ import './stylesheets/Projects.css';
 
 import ProjectsBlock from './ProjectsBlock';
 
-function Projects(props) {
+type ProjectsProps = {
+  projectsData: {
+    projects: Project[]
+  }
+}
+
+type Project = {
+  title: string;
+  description: string;
+  thumbnail: string;
+  route: string;
+  repo: string;
+}
+
+function Projects(props: ProjectsProps) {
   const createProjects = () => {
     let components = [];
     let id = 0;
