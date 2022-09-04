@@ -21,6 +21,7 @@
   "devDependencies": {
     "@tsconfig/node16": "^1.0.3",
     "@types/react": "^18.0.18",
+    "@types/react-dom": "^18.0.6",
     "@typescript-eslint/parser": "^5.36.1",
     "prettier": "^2.7.1",
     "react-scripts": "5.0.0",
