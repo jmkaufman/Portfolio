@@ -2,16 +2,16 @@
   "workHistory": [
     {
       "companyName": "Epsilon C5I, Inc",
-      "projects": [
+      "workProjects": [
         {
-          "title": "Software Engineer, Raytheon GPNTS",
+          "jobTitle": "Software Engineer, Raytheon GPNTS",
           "startDate": "05/2020",
-          "endDate": "Present",
+          "endDate": "07/2022",
           "languages": "C++, Java, Python, C#",
           "frameworks": "Linux, Git, Jenkins, Selenium WebDriver, Google Test"
         },
         {
-          "title": "Software Engineer, Raytheon SSDS",
+          "jobTitle": "Software Engineer, Raytheon SSDS",
           "startDate": "07/2018",
           "endDate": "04/2020",
           "languages": "C++, Java",

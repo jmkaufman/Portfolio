@@ -4,44 +4,29 @@ import { useState, useEffect } from 'react';
 
 import WorkHistoryBlock from './WorkHistoryBlock';
 
-type WorkHistoryModel = {
-  workHistory: WorkHistoryInterface[]
-}
+import { WorkHistoryDataModel } from "./WorkHistoryModels";
 
-interface WorkHistoryInterface {
-  companyName: string,
-  projects: Project[]
-}
-
-interface Project {
-  title: string,
-  startDate: string,
-  endDate: string,
-  languages: string,
-  frameworks: string
-}
-
-function WorkHistory() {
-  const [workHistoryData, setWorkHistoryData] = useState<WorkHistoryModel>();
+function WorkHistory(): JSX.Element {
+  const [workHistoryData, setWorkHistoryData] = useState<WorkHistoryDataModel>();
 
   useEffect(() => {
     fetch('/data/WorkHistory.json')
       .then((res) => res.json())
-      .then((_data) => setWorkHistoryData(_data))
+      .then((data) => setWorkHistoryData(data))
       .catch((err) => console.log(err));
   }, []);
 
-  const createWorkHistory = () => {
-    let components = [];
-    let id = 0;
+  const createWorkHistory = (): JSX.Element[] => {
+    let whbComponents: JSX.Element[] = [];
+    let id: number = 0;
     
     if (workHistoryData){
       for (let entry of workHistoryData.workHistory) {
-        components.push(<WorkHistoryBlock key={id++} entry={entry}/>);
+        whbComponents.push(<WorkHistoryBlock key={id++} companyName={entry.companyName} workProjects={entry.workProjects} />);
       }
     }
 
-    return components;
+    return whbComponents;
   }
 
   return (
