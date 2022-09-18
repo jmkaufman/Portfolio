@@ -2,27 +2,26 @@ import './stylesheets/Projects.css';
 
 import ProjectsBlock from './ProjectsBlock';
 
-type ProjectsProps = {
-  projectsData: {
-    projects: Project[]
-  }
-}
+import { PersonalProjectsDataModel } from './PersonalProjectsModels';
 
-type Project = {
-  title: string;
-  description: string;
-  thumbnail: string;
-  route: string;
-  repo: string;
-}
-
-function Projects(props: ProjectsProps) {
+function Projects(props: PersonalProjectsDataModel): JSX.Element {
   const createProjects = () => {
-    let components = [];
-    let id = 0;
+    let components: JSX.Element[] = [];
+    let id: number = 0;
 
-    for (let entry of props.projectsData.projects) {
-      components.push(<ProjectsBlock key={id++} entry={entry}/>);
+    if(props.personalProjects) {
+      for (let entry of props.personalProjects) {
+        components.push(
+          <ProjectsBlock 
+            key={id++} 
+            title={entry.title} 
+            description={entry.description} 
+            thumbnail={entry.thumbnail} 
+            route={entry.route} 
+            repo={entry.repo}
+          />
+        );
+      }
     }
 
     return components;
@@ -31,7 +30,7 @@ function Projects(props: ProjectsProps) {
   return (
     <div className='projects'>
       <h2>Personal Projects</h2>
-      <div className='project-block-layout'>{!props.projectsData ? 'Loading...' : createProjects()}</div>
+      <div className='project-block-layout'>{!props.personalProjects ? 'Loading...' : createProjects()}</div>
     </div>
   );
 }

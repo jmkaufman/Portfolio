@@ -1,5 +1,5 @@
 {
-  "projects": [
+  "personalProjects": [
     {
       "title": "Pong",
       "description": "Pong built entirely in React",

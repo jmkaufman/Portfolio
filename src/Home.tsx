@@ -5,18 +5,16 @@ import About from './About';
 import WorkHistory from './WorkHistory';
 import Projects from './Projects';
 
-type HomeProps = {
-  projectsData: any
-}
+import { PersonalProjectsDataModel } from './PersonalProjectsModels';
 
-function Home(props: HomeProps) {
+function Home(props: PersonalProjectsDataModel) {
   return (
     <div className="Home">
       <TopBar/>
       <div className='page-content'>
         <About/>
         <WorkHistory/>
-        <Projects projectsData={props.projectsData}/>
+        <Projects personalProjects={props.personalProjects}/>
       </div>
     </div>
   );

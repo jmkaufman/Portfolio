@@ -15,57 +15,49 @@ import {
 
 import Home from './Home';
 
-type ProjectModel = {
-  projects: {
-    title: string,
-    description: string,
-    thumbnail: string,
-    route: string,
-    repo: string
-  }[]
-}
+import { PersonalProjectsDataModel } from './PersonalProjectsModels';
 
-function App () {
-  // State variable declarations.
-  const [projectsData, setProjectsData] = useState<ProjectModel>();
-  const [paths, addToPaths] = useState<string[]>([]);
+function App (): JSX.Element {
+  // State variables.
+  const [personalProjectsData, setPersonalProjectsData] = useState<PersonalProjectsDataModel>();
+  const [paths, setPaths] = useState<string[]>([]);
 
-  // Get data from Projects.json on load.
+  // Get data from PersonalProjects.json on page load.
   useEffect(() => {
-    fetch('/data/Projects.json')
+    fetch('/data/PersonalProjects.json')
       .then((res) => res.json())
-      .then((_data) => setProjectsData(_data))
+      .then((data) => setPersonalProjectsData(data))
       .catch((err) => console.log(err));
   }, []);
 
-  // Fill the paths state variable after data has been successfully updated.
+  // Fills the paths state variable when personalProjectsData is updated.
   useEffect(() => {
-    if(projectsData){
+    if(personalProjectsData){
       let listOfPaths: string[] = [];
 
-      for(let entry of projectsData.projects)
+      for(let entry of personalProjectsData.personalProjects)
       {
         listOfPaths.push(entry.route);
       }
 
-      addToPaths(listOfPaths);
+      setPaths(listOfPaths);
     }
-  }, [projectsData]);
+  }, [personalProjectsData]);
 
-  // Creates a component using dynamic importing via React.lazy.
+  // Dynamically import a project and tie it to a new component.
   const createGenericComponent = (path: string) => {
-    const upperCasePath = path.charAt(0).toUpperCase() + path.slice(1);
+    const upperCasePath: string = path.charAt(0).toUpperCase() + path.slice(1);
     const NewComponent = lazy(() => import('./external/' + upperCasePath + '/src/App'));
 
     return <NewComponent/>;
   }
 
-  // Creates a list of routes for the router based on the paths state variable.
+  // Create a list of routes.
   const createNewRoutes = () => {
     console.log('Projects loaded, creating routes');
     
-    let components = [];
-    let id = 0;
+    let components: JSX.Element[] = [];
+    let id: number = 0;
 
     for(let path of paths)
     {
@@ -86,8 +78,13 @@ function App () {
     <Router>
       <Routes>
         <>
-          <Route path='/' element={<Home projectsData={projectsData}/>}/>
-          {!projectsData ? console.log('Projects not loaded, no additional routes created') : createNewRoutes()}
+          {!personalProjectsData ?
+          console.log('Projects not loaded, Home not created') :
+          <Route path='/' element={<Home personalProjects={personalProjectsData.personalProjects}/>}/>}
+          
+          {!personalProjectsData ?
+          console.log('Projects not loaded, no routes created') :
+          createNewRoutes()}
         </>
       </Routes>
     </Router>
