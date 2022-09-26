@@ -3,3 +3,9 @@
   width: 400px;
   overflow-wrap: break-word;
 }
+
+@media (max-width: 640px) {
+  #home-description {
+    width: 300px;
+  }
+}
