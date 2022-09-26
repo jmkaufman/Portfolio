@@ -22,12 +22,17 @@ function App (): JSX.Element {
   const [personalProjectsData, setPersonalProjectsData] = useState<PersonalProjectsDataModel>();
   const [paths, setPaths] = useState<string[]>([]);
 
-  // Get data from PersonalProjects.json on page load.
+  // Get data from PersonalProjects.json on page load using an IIFE.
   useEffect(() => {
-    fetch('/data/PersonalProjects.json')
-      .then((res) => res.json())
-      .then((data) => setPersonalProjectsData(data))
-      .catch((err) => console.log(err));
+      (async () => {
+        try {
+          const data = await fetch('/data/PersonalProjects.json');
+          const json = await data.json();
+          setPersonalProjectsData(json);
+        } catch (err) {
+          console.log(err);
+        }
+      })();
   }, []);
 
   // Fills the paths state variable when personalProjectsData is updated.

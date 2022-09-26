@@ -7,13 +7,20 @@ import WorkHistoryBlock from './WorkHistoryBlock';
 import { WorkHistoryDataModel } from "./WorkHistoryModels";
 
 function WorkHistory(): JSX.Element {
+  // State variable.
   const [workHistoryData, setWorkHistoryData] = useState<WorkHistoryDataModel>();
 
+  // Get data from WorkHistory.json on page load using an IIFE.
   useEffect(() => {
-    fetch('/data/WorkHistory.json')
-      .then((res) => res.json())
-      .then((data) => setWorkHistoryData(data))
-      .catch((err) => console.log(err));
+    (async () => {
+      try {
+        const data = await fetch('/data/WorkHistory.json');
+        const json = await data.json();
+        setWorkHistoryData(json);
+      } catch (err) {
+        console.log(err);
+      }
+    })();
   }, []);
 
   const createWorkHistory = (): JSX.Element[] => {
