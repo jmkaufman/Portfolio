@@ -1,6 +1,4 @@
-import {
-  Link,
-} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import { PersonalProject } from "./PersonalProjectsModels";
 
@@ -11,7 +9,7 @@ function ProjectsBlock(props: PersonalProject){
     <div className='project-block'>
       <h3>{title}</h3>
       <p>{description}</p>
-      <img className="thumbnail" src={require('../public/thumbnails/' + thumbnail)} alt={title + ' thumbnail'}/> {/*Try to keep thumbnails 350x233*/}
+      <img className="thumbnail" src={'/thumbnails/' + thumbnail} alt={title + ' thumbnail'}/> {/*Try to keep thumbnails 350x233*/}
       <br/>
       <Link to={'/' + route} target='_blank' rel='noreferrer'>View it here!</Link>
       <br/>
