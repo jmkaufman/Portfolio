@@ -52,6 +52,7 @@ function App (): JSX.Element {
   // Dynamically import a project and tie it to a new component.
   const createGenericComponent = (path: string) => {
     const upperCasePath: string = path.charAt(0).toUpperCase() + path.slice(1);
+    // @ts-ignore
     const NewComponent = lazy(() => import('./external/' + upperCasePath + '/src/App'));
 
     return <NewComponent/>;
