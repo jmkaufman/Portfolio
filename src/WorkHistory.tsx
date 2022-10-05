@@ -4,18 +4,18 @@ import { useState, useEffect } from 'react';
 
 import WorkHistoryBlock from './WorkHistoryBlock';
 
-import { WorkHistoryDataModel } from "./WorkHistoryModels";
+import { WorkHistoryBlockPropsModel, WorkHistoryDataModel } from "./WorkHistoryModels";
 
 function WorkHistory(): JSX.Element {
   // State variable.
   const [workHistoryData, setWorkHistoryData] = useState<WorkHistoryDataModel>();
 
-  // Get data from WorkHistory.json on page load using an IIFE.
+  // Get work history data on page load using an IIFE.
   useEffect(() => {
-    (async () => {
+    (async function loadWorkHistory() {
       try {
-        const data = await fetch('/data/WorkHistory.json');
-        const json = await data.json();
+        let data = await fetch('/data/WorkHistory.json');
+        let json = await data.json();
         setWorkHistoryData(json);
       } catch (err) {
         console.log(err);
@@ -23,12 +23,12 @@ function WorkHistory(): JSX.Element {
     })();
   }, []);
 
-  const createWorkHistory = (): JSX.Element[] => {
+  function createWorkHistory(workHistory: WorkHistoryBlockPropsModel[]): JSX.Element[] {
     let whbComponents: JSX.Element[] = [];
     let id: number = 0;
     
-    if (workHistoryData){
-      for (let entry of workHistoryData.workHistory) {
+    if (workHistory){
+      for (let entry of workHistory) {
         whbComponents.push(<WorkHistoryBlock key={id++} companyName={entry.companyName} workProjects={entry.workProjects} />);
       }
     }
@@ -40,7 +40,7 @@ function WorkHistory(): JSX.Element {
     <div className='work-history'>
       <h2>Professional Experience</h2>
       <div className='triangle'/>
-      <div>{!workHistoryData ? 'Loading...' : createWorkHistory()}</div>
+      <div>{!workHistoryData ? 'Loading...' : createWorkHistory(workHistoryData.workHistory)}</div>
       <div className='triangle'/>
     </div>
   );

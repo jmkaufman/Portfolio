@@ -7,7 +7,7 @@ export type WorkHistoryBlockPropsModel = {
     workProjects: WorkProject[]
 }
 
-type WorkProject = {
+export type WorkProject = {
   jobTitle: string,
   startDate: string,
   endDate: string,

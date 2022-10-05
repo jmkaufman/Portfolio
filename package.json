@@ -1,6 +1,6 @@
 {
   "name": "portfolio",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Personal portfolio website",
   "author": "jmkaufman",
   "license": "UNLICENSED",
@@ -13,28 +13,28 @@
   },
   "source": "/src/index.html",
   "staticFiles": {
-      "staticPath": "public",
-      "watcherGlob": "**"
+    "staticPath": "public",
+    "watcherGlob": "**"
   },
   "dependencies": {
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-icons": "^4.3.1",
-    "react-router-dom": "^6.2.2"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-icons": "^4.4.0",
+    "react-router-dom": "^6.4.1"
   },
   "devDependencies": {
     "@parcel/packager-raw-url": "^2.7.0",
     "@parcel/transformer-webmanifest": "^2.7.0",
     "@tsconfig/node16": "^1.0.3",
-    "@types/node": "^18.7.23",
-    "@types/react": "^18.0.18",
+    "@types/node": "^18.8.2",
+    "@types/react": "^18.0.21",
     "@types/react-dom": "^18.0.6",
-    "@typescript-eslint/parser": "^5.36.1",
+    "@typescript-eslint/parser": "^5.39.0",
     "parcel": "^2.7.0",
     "parcel-reporter-static-files-copy": "^1.4.0",
     "prettier": "^2.7.1",
     "process": "^0.11.10",
-    "typescript": "^4.8.2"
+    "typescript": "^4.8.4"
   },
   "scripts": {
     "start": "parcel",

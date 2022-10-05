@@ -7,6 +7,7 @@ import ProjectsBlock from './ProjectsBlock';
 import { PersonalProject, PersonalProjectsDataModel } from './PersonalProjectsModels';
 
 function Projects(): JSX.Element {
+  // State variable.
   const [personalProjectsData, setPersonalProjectsData] = useState<PersonalProjectsDataModel>();
   
   // Get personal projects data on page load using an IIFE.
@@ -22,7 +23,7 @@ function Projects(): JSX.Element {
     })();
   }, []);
 
-  function createProjects(personalProjects: PersonalProject[]): JSX.Element[] {
+  function createProjectBlocks(personalProjects: PersonalProject[]): JSX.Element[] {
     let components: JSX.Element[] = [];
     let id: number = 0;
 
@@ -50,7 +51,7 @@ function Projects(): JSX.Element {
   return (
     <div className='projects'>
       <h2>Personal Projects</h2>
-      <div className='project-block-layout'>{!personalProjectsData ? 'Loading...' : createProjects(personalProjectsData.personalProjects)}</div>
+      <div className='project-block-layout'>{!personalProjectsData ? 'Loading...' : createProjectBlocks(personalProjectsData.personalProjects)}</div>
     </div>
   );
 }
