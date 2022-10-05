@@ -1,24 +1,44 @@
 import './stylesheets/Projects.css';
 
+import { useEffect, useState } from 'react';
+
 import ProjectsBlock from './ProjectsBlock';
 
-import { PersonalProjectsDataModel } from './PersonalProjectsModels';
+import { PersonalProject, PersonalProjectsDataModel } from './PersonalProjectsModels';
 
-function Projects(props: PersonalProjectsDataModel): JSX.Element {
-  const createProjects = () => {
+function Projects(): JSX.Element {
+  const [personalProjectsData, setPersonalProjectsData] = useState<PersonalProjectsDataModel>();
+  
+  // Get personal projects data on page load using an IIFE.
+  useEffect(() => {
+    (async function loadPersonalProjects() {
+      try {
+        let data = await fetch('/data/PersonalProjects.json');
+        let json = await data.json();
+        setPersonalProjectsData(json);
+      } catch (err) {
+        console.log(err);
+      }
+    })();
+  }, []);
+
+  function createProjects(personalProjects: PersonalProject[]): JSX.Element[] {
     let components: JSX.Element[] = [];
     let id: number = 0;
 
-    if(props.personalProjects) {
-      for (let entry of props.personalProjects) {
+    if (personalProjects)
+    {
+      for (let project of personalProjects) {
+        let { title, description, thumbnail, site, repo } = project;
+
         components.push(
           <ProjectsBlock 
             key={id++} 
-            title={entry.title} 
-            description={entry.description} 
-            thumbnail={entry.thumbnail} 
-            route={entry.route} 
-            repo={entry.repo}
+            title={title} 
+            description={description} 
+            thumbnail={thumbnail} 
+            site={site} 
+            repo={repo}
           />
         );
       }
@@ -30,7 +50,7 @@ function Projects(props: PersonalProjectsDataModel): JSX.Element {
   return (
     <div className='projects'>
       <h2>Personal Projects</h2>
-      <div className='project-block-layout'>{!props.personalProjects ? 'Loading...' : createProjects()}</div>
+      <div className='project-block-layout'>{!personalProjectsData ? 'Loading...' : createProjects(personalProjectsData.personalProjects)}</div>
     </div>
   );
 }

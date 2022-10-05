@@ -1,9 +1,7 @@
-import { Link } from "react-router-dom";
-
 import { PersonalProject } from "./PersonalProjectsModels";
 
-function ProjectsBlock(props: PersonalProject){
-  const { title, description, thumbnail, route, repo } = props
+function ProjectsBlock(props: PersonalProject): JSX.Element {
+  let { title, description, thumbnail, site, repo } = props;
 
   return (
     <div className='project-block'>
@@ -11,7 +9,7 @@ function ProjectsBlock(props: PersonalProject){
       <p>{description}</p>
       <img className="thumbnail" src={'/thumbnails/' + thumbnail} alt={title + ' thumbnail'}/> {/*Try to keep thumbnails 350x233*/}
       <br/>
-      <Link to={'/' + route} target='_blank' rel='noreferrer'>View it here!</Link>
+      <a href={site} target='_blank' rel='noreferrer'>View it here!</a>
       <br/>
       <a href={repo} target='_blank' rel='noreferrer'>Github Repository</a>
       <br/>

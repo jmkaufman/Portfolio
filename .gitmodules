@@ -1,3 +1,0 @@
-[submodule "src/external/Pong"]
-	path = src/external/Pong
-	url = https://github.com/jmkaufman/Pong.git

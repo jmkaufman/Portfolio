@@ -6,6 +6,6 @@ export type PersonalProject = {
   title: string;
   description: string;
   thumbnail: string;
-  route: string;
+  site: string;
   repo: string;
 }
