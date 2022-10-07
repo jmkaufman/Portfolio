@@ -1,20 +1,24 @@
-import './stylesheets/WorkHistory.css';
+import "./stylesheets/WorkHistory.css";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
-import WorkHistoryBlock from './WorkHistoryBlock';
+import WorkHistoryBlock from "./WorkHistoryBlock";
 
-import { WorkHistoryBlockPropsModel, WorkHistoryDataModel } from "./WorkHistoryModels";
+import {
+  WorkHistoryBlockPropsModel,
+  WorkHistoryDataModel,
+} from "./WorkHistoryModels";
 
 function WorkHistory(): JSX.Element {
   // State variable.
-  const [workHistoryData, setWorkHistoryData] = useState<WorkHistoryDataModel>();
+  const [workHistoryData, setWorkHistoryData] =
+    useState<WorkHistoryDataModel>();
 
   // Get work history data on page load using an IIFE.
   useEffect(() => {
     (async function loadWorkHistory() {
       try {
-        let data = await fetch('/data/WorkHistory.json');
+        let data = await fetch("/data/WorkHistory.json");
         let json = await data.json();
         setWorkHistoryData(json);
       } catch (err) {
@@ -23,13 +27,21 @@ function WorkHistory(): JSX.Element {
     })();
   }, []);
 
-  function createWorkHistory(workHistory: WorkHistoryBlockPropsModel[]): JSX.Element[] {
+  function createWorkHistory(
+    workHistory: WorkHistoryBlockPropsModel[]
+  ): JSX.Element[] {
     let whbComponents: JSX.Element[] = [];
-    let id: number = 0;
-    
-    if (workHistory){
+    let id = 0;
+
+    if (workHistory) {
       for (let entry of workHistory) {
-        whbComponents.push(<WorkHistoryBlock key={id++} companyName={entry.companyName} workProjects={entry.workProjects} />);
+        whbComponents.push(
+          <WorkHistoryBlock
+            key={id++}
+            companyName={entry.companyName}
+            workProjects={entry.workProjects}
+          />
+        );
       }
     }
 
@@ -37,11 +49,15 @@ function WorkHistory(): JSX.Element {
   }
 
   return (
-    <div className='work-history'>
+    <div className="work-history">
       <h2>Professional Experience</h2>
-      <div className='triangle'/>
-      <div>{!workHistoryData ? 'Loading...' : createWorkHistory(workHistoryData.workHistory)}</div>
-      <div className='triangle'/>
+      <div className="triangle" />
+      <div>
+        {!workHistoryData
+          ? "Loading..."
+          : createWorkHistory(workHistoryData.workHistory)}
+      </div>
+      <div className="triangle" />
     </div>
   );
 }

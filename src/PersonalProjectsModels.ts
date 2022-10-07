@@ -1,6 +1,6 @@
 export type PersonalProjectsDataModel = {
-  personalProjects: PersonalProject[]
-}
+  personalProjects: PersonalProject[];
+};
 
 export type PersonalProject = {
   title: string;
@@ -8,4 +8,4 @@ export type PersonalProject = {
   thumbnail: string;
   site: string;
   repo: string;
-}
+};
