@@ -30,12 +30,12 @@ function Projects(): JSX.Element {
   function createProjectBlocks(
     personalProjects: PersonalProject[]
   ): JSX.Element[] {
-    let components: JSX.Element[] = [];
+    const components: JSX.Element[] = [];
     let id = 0;
 
     if (personalProjects) {
       for (let project of personalProjects) {
-        let { title, description, thumbnail, site, repo } = project;
+        const { title, description, thumbnail, site, repo } = project;
 
         components.push(
           <ProjectsBlock

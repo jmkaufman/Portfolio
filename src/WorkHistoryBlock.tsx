@@ -2,11 +2,12 @@ import { WorkHistoryBlockPropsModel, WorkProject } from "./WorkHistoryModels";
 
 function WorkHistoryBlock(props: WorkHistoryBlockPropsModel): JSX.Element {
   function createWorkHistoryBlocks(workProjects: WorkProject[]): JSX.Element[] {
-    let infoComponents: JSX.Element[] = [];
+    const infoComponents: JSX.Element[] = [];
     let id = 0;
 
     for (let workProject of workProjects) {
-      let { jobTitle, startDate, endDate, languages, frameworks } = workProject;
+      const { jobTitle, startDate, endDate, languages, frameworks } =
+        workProject;
 
       infoComponents.push(
         <div className="project" key={id++}>

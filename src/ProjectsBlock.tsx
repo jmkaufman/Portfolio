@@ -1,7 +1,7 @@
 import { PersonalProject } from "./PersonalProjectsModels";
 
 function ProjectsBlock(props: PersonalProject): JSX.Element {
-  let { title, description, thumbnail, site, repo } = props;
+  const { title, description, thumbnail, site, repo } = props;
 
   return (
     <div className="project-block">

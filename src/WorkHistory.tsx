@@ -18,8 +18,8 @@ function WorkHistory(): JSX.Element {
   useEffect(() => {
     (async function loadWorkHistory() {
       try {
-        let data = await fetch("/data/WorkHistory.json");
-        let json = await data.json();
+        const data = await fetch("/data/WorkHistory.json");
+        const json = await data.json();
         setWorkHistoryData(json);
       } catch (err) {
         console.log(err);
@@ -30,7 +30,7 @@ function WorkHistory(): JSX.Element {
   function createWorkHistory(
     workHistory: WorkHistoryBlockPropsModel[]
   ): JSX.Element[] {
-    let whbComponents: JSX.Element[] = [];
+    const whbComponents: JSX.Element[] = [];
     let id = 0;
 
     if (workHistory) {
