@@ -149,7 +149,7 @@ Each decision has a stable ID (`D-NN`) referenced by the traceability matrix.
 | D-12, D-29 | T-11 | Accessibility pass | skip-link, focus styles, ARIA labels, alt text across HTML/CSS/JS | ✅ |
 | D-27 | T-12 | Style guide page | `styleguide.html` | ✅ |
 | D-02, D-25, D-30, D-32 | T-13 | Deploy config (CNAME, 404, deploy-branch root) | `CNAME`, `404.html`, GH Pages settings | ✅ (settings documented in docs/DEPLOY.md) |
-| D-23, D-33 | T-14 | Verification (local preview, Lighthouse, HTML/link checks) | check results | Not started |
+| D-23, D-33 | T-14 | Verification (local preview, Lighthouse, HTML/link checks) | check results | ✅ (local in docs/VERIFICATION.md; tool suite in CI) |
 | D-35 | T-15 | CI workflow | `.github/workflows/verify.yml` | Not started |
 | D-22 | — | No analytics (absence verified) | (no analytics scripts present) | N/A |
 | D-04, D-09 | T-05/T-06/T-08/T-10 | Contact links + inline SVG icons | `index.html`, icon markup | ✅ |
