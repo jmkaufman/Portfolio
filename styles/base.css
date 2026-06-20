@@ -143,6 +143,11 @@ hr {
   outline: none;
 }
 
+/* The skip-link target is a focusable container, not a widget — no focus ring. */
+#main:focus {
+  outline: none;
+}
+
 /* ---- A11y utilities (D-29) --------------------------------------------- */
 .visually-hidden {
   position: absolute;
