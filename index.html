@@ -5,6 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!--
+      Content-Security-Policy via <meta> — GitHub Pages cannot set response headers
+      (D-20/D-31). All resources are same-origin; no third-party scripts/CDNs. The
+      inline theme-init script is allowed by its SHA-256 hash; inline CSS uses
+      style-src 'unsafe-inline' (style injection is low-risk with no user input on a
+      static site). frame-ancestors/report-uri cannot be expressed in meta and are
+      not needed here — no auth or state-changing actions (D-31).
+    -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' 'sha256-16eiVbLeiP8LfS4Ts9dQbwPpUkXuV8uq0Iuk8yPDWDE='; style-src 'self' 'unsafe-inline'; img-src 'self'; font-src 'self'; connect-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'"
+    />
+
+    <!--
       Critical CSS (D-06) + no-flash theme bootstrap (D-14). Painted before the
       external stylesheets load: color-scheme + the system colors Canvas/CanvasText
       theme the first paint to the resolved theme without duplicating token values.
