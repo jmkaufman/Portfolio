@@ -1,0 +1,79 @@
+/*
+ * layout.css — responsive layout scaffolding (D-13): containers, section rhythm,
+ * and fluid grids. Mobile-first; widths scale via fluid tokens and clamp() rather
+ * than fixed breakpoints where possible. Visual styling lives in components.css.
+ */
+
+:root {
+  /* Sticky-header height — a structural layout metric shared by the header
+     component and the scroll offset below. */
+  --header-height: 4rem;
+}
+
+html {
+  /* Offset in-page anchor scrolling so sections clear the sticky header (D-11). */
+  scroll-padding-top: calc(var(--header-height) + var(--space-sm));
+}
+
+/* ---- Container --------------------------------------------------------- */
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-pad);
+}
+
+/* ---- Section rhythm (generous whitespace, D-16 guardrail 4) ------------ */
+.section {
+  padding-block: var(--space-3xl);
+}
+
+@media (min-width: 64rem) {
+  .section {
+    padding-block: var(--space-4xl);
+  }
+}
+
+/* ---- Flow utilities ---------------------------------------------------- */
+/* Vertical spacing between sibling flow elements. */
+.stack {
+  display: flex;
+  flex-direction: column;
+}
+
+.stack > * + * {
+  margin-block-start: var(--flow-space, var(--space-md));
+}
+
+/* Inline wrapping group (e.g. skill chips, button rows). */
+.cluster {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2xs);
+  align-items: center;
+}
+
+/* ---- Grids ------------------------------------------------------------- */
+/* auto-fill keeps cards card-sized as the set grows from one to many
+   (content is expandable per the owner's lean-launch decision). */
+.grid {
+  display: grid;
+  gap: var(--space-lg);
+}
+
+.grid--cards {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr));
+}
+
+/* Two-column split (e.g. about/hero on wide viewports); single column below. */
+.split {
+  display: grid;
+  gap: var(--space-xl);
+}
+
+@media (min-width: 48rem) {
+  .split--hero {
+    grid-template-columns: 3fr 2fr;
+    align-items: center;
+  }
+}
