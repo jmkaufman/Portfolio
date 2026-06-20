@@ -7,7 +7,8 @@ These mirror the agent memory files under
 `~/.claude/projects/D--Documents-My-Web-Sites-Portfolio/memory/`. Each task file (T-01…T-15)
 captures the scope, the design decisions (`D-xx`) it implements, its dependencies, and its
 expected artifacts. Decisions live in [`../MODERNIZATION_DESIGN.md`](../MODERNIZATION_DESIGN.md);
-the implementation plan and handoff prompt are [`../HANDOFF_PROMPT.md`](../HANDOFF_PROMPT.md).
+the build plan is [`../IMPLEMENTATION_PLAN.md`](../IMPLEMENTATION_PLAN.md) and the handoff
+prompt is [`../HANDOFF_PROMPT.md`](../HANDOFF_PROMPT.md).
 
 `[[name]]` references are wiki-style links to the other memory files in this folder.
 

@@ -124,7 +124,7 @@ Each decision has a stable ID (`D-NN`) referenced by the traceability matrix.
 - [x] ~~Migration of existing content & assets~~ → D-34 + content table in plan
 
 > Implementation plan with the full task breakdown (T-01…T-15) and per-decision
-> traceability lives at `~/.claude/plans/wild-wibbling-orbit.md`. The matrix below mirrors it.
+> traceability lives at [`IMPLEMENTATION_PLAN.md`](IMPLEMENTATION_PLAN.md). The matrix below mirrors it.
 
 ---
 

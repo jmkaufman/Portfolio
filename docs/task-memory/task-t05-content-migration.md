@@ -11,5 +11,5 @@ metadata:
 - **Implements:** D-05 (content in HTML), D-28 (accept markup duplication), D-34 (clean redesign, content-only migration).
 - **Depends on:** [[task-t04-html-skeleton]].
 - **Artifacts:** content within `index.html`.
-- **Content source:** the migration table in the implementation plan / handoff prompt.
+- **Content source:** the migration table in [`../IMPLEMENTATION_PLAN.md`](../IMPLEMENTATION_PLAN.md) (and the handoff prompt).
 - **Open items the owner must supply:** GitHub profile URL (likely github.com/jmkaufman), whether to expand the sparse content (1 employer, 1 project), bio expansion. See [[portfolio-open-content-items]].

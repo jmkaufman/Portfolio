@@ -17,7 +17,7 @@ hosted on **GitHub Pages**, per a design process that is already complete.
 ### Read these first (authoritative — do not re-decide what they settled)
 1. `docs/MODERNIZATION_DESIGN.md` — the 36 design decisions (D-01…D-36), their rationale,
    the "modern & bold" guardrails (D-16 detail), and the traceability matrix.
-2. `~/.claude/plans/wild-wibbling-orbit.md` — the implementation plan: target architecture,
+2. `docs/IMPLEMENTATION_PLAN.md` — the implementation plan: target architecture,
    the 15 ordered tasks (T-01…T-15), dependencies, and verification steps.
 
 Treat every D-xx decision as binding. If you believe one is wrong, raise it with the owner
