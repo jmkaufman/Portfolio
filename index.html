@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!--
+      Critical CSS (D-06) + no-flash theme bootstrap (D-14). Painted before the
+      external stylesheets load: color-scheme + the system colors Canvas/CanvasText
+      theme the first paint to the resolved theme without duplicating token values.
+    -->
+    <style>
+      :root {
+        color-scheme: light dark;
+      }
+      :root[data-theme="light"] {
+        color-scheme: light;
+      }
+      :root[data-theme="dark"] {
+        color-scheme: dark;
+      }
+      html {
+        background-color: Canvas;
+      }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family:
+          system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        background-color: Canvas;
+        color: CanvasText;
+      }
+    </style>
+    <script>
+      // Theme bootstrap (D-14): apply the stored preference before first paint to
+      // avoid a flash of the wrong theme. With no stored preference the OS setting
+      // is followed via color-scheme: light dark. Also flips the no-js → js hook so
+      // JS-only controls (e.g. the theme toggle) are hidden when JS is unavailable
+      // (graceful degradation, D-05/D-30). Hashed in the meta CSP (D-20/D-31).
+      (function () {
+        var root = document.documentElement;
+        root.classList.remove("no-js");
+        root.classList.add("js");
+        try {
+          var stored = localStorage.getItem("theme");
+          if (stored === "light" || stored === "dark") {
+            root.setAttribute("data-theme", stored);
+            root.style.colorScheme = stored;
+          }
+        } catch (e) {
+          /* localStorage unavailable — fall back to OS preference */
+        }
+      })();
+    </script>
+
+    <title>Jason Kaufman — Software Engineer</title>
+    <meta
+      name="description"
+      content="Jason Kaufman is a software engineer with a background in real-time systems, branching into full-stack. Experience, projects, and contact."
+    />
+    <link rel="canonical" href="https://jasonkaufman.dev/" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0b0e14" media="(prefers-color-scheme: dark)" />
+
+    <!-- Open Graph (D-21); og:image asset wired in T-09 -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Jason Kaufman" />
+    <meta property="og:title" content="Jason Kaufman — Software Engineer" />
+    <meta
+      property="og:description"
+      content="Software engineer with a background in real-time systems, branching into full-stack."
+    />
+    <meta property="og:url" content="https://jasonkaufman.dev/" />
+    <meta property="og:image" content="https://jasonkaufman.dev/assets/og-image.png" />
+    <meta property="og:image:alt" content="Jason Kaufman — Software Engineer" />
+
+    <!-- Twitter Card (D-21) -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Jason Kaufman — Software Engineer" />
+    <meta
+      name="twitter:description"
+      content="Software engineer with a background in real-time systems, branching into full-stack."
+    />
+    <meta name="twitter:image" content="https://jasonkaufman.dev/assets/og-image.png" />
+
+    <!-- Icons + manifest (assets created in T-08) -->
+    <link rel="icon" href="/assets/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+
+    <!-- JSON-LD Person (D-21) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Jason Kaufman",
+        "url": "https://jasonkaufman.dev",
+        "jobTitle": "Software Engineer",
+        "email": "mailto:jkaufman217@gmail.com",
+        "worksFor": { "@type": "Organization", "name": "Epsilon C5I, Inc" },
+        "sameAs": [
+          "https://www.linkedin.com/in/jason-m-kaufman/",
+          "https://github.com/jmkaufman"
+        ],
+        "knowsAbout": [
+          "C++",
+          "Java",
+          "Python",
+          "C#",
+          "Linux",
+          "Git",
+          "Jenkins",
+          "Selenium WebDriver",
+          "Google Test",
+          "Java Swing"
+        ]
+      }
+    </script>
+
+    <!-- Stylesheets (tokens → base → layout → components). components.css lands in T-06. -->
+    <link rel="stylesheet" href="/styles/tokens.css" />
+    <link rel="stylesheet" href="/styles/base.css" />
+    <link rel="stylesheet" href="/styles/layout.css" />
+    <link rel="stylesheet" href="/styles/components.css" />
+
+    <!-- Module preload (D-06); modules authored in T-07 -->
+    <link rel="modulepreload" href="/js/main.js" />
+    <link rel="modulepreload" href="/js/theme.js" />
+    <link rel="modulepreload" href="/js/nav.js" />
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header no-print">
+      <div class="container site-header__inner">
+        <a class="site-header__brand" href="#about" aria-label="Jason Kaufman — home">JK</a>
+
+        <nav class="primary-nav" aria-label="Primary">
+          <ul role="list" class="primary-nav__list">
+            <li><a class="primary-nav__link" href="#about">About</a></li>
+            <li><a class="primary-nav__link" href="#experience">Experience</a></li>
+            <li><a class="primary-nav__link" href="#projects">Projects</a></li>
+            <li><a class="primary-nav__link" href="#skills">Skills</a></li>
+            <li><a class="primary-nav__link" href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+
+        <button
+          class="theme-toggle"
+          type="button"
+          aria-label="Toggle color theme"
+          aria-pressed="false"
+        >
+          <svg class="theme-toggle__icon theme-toggle__icon--sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <circle cx="12" cy="12" r="4.5" fill="currentColor" />
+            <g stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <line x1="12" y1="2" x2="12" y2="5" />
+              <line x1="12" y1="19" x2="12" y2="22" />
+              <line x1="2" y1="12" x2="5" y2="12" />
+              <line x1="19" y1="12" x2="22" y2="12" />
+              <line x1="4.6" y1="4.6" x2="6.7" y2="6.7" />
+              <line x1="17.3" y1="17.3" x2="19.4" y2="19.4" />
+              <line x1="4.6" y1="19.4" x2="6.7" y2="17.3" />
+              <line x1="17.3" y1="6.7" x2="19.4" y2="4.6" />
+            </g>
+          </svg>
+          <svg class="theme-toggle__icon theme-toggle__icon--moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path
+              d="M20 14.5A8 8 0 1 1 9.5 4 6.5 6.5 0 0 0 20 14.5Z"
+              fill="currentColor"
+            />
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <main id="main">
+      <!-- About / Hero (D-10) -->
+      <section id="about" class="section hero" aria-labelledby="about-title">
+        <div class="container">
+          <div class="split split--hero">
+            <div class="hero__content stack">
+              <!-- T-05: eyebrow + bio paragraph -->
+              <h1 id="about-title" class="hero__title">Jason Kaufman</h1>
+              <div class="hero__actions cluster">
+                <a class="button button--primary" href="#projects">View projects</a>
+                <a class="button button--ghost" href="#contact">Get in touch</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Experience (D-10) -->
+      <section id="experience" class="section" aria-labelledby="experience-title">
+        <div class="container stack">
+          <h2 id="experience-title" class="section__title">Experience</h2>
+          <!-- T-05: employer + roles (accept-duplication blocks, D-28) -->
+          <div class="experience stack"></div>
+        </div>
+      </section>
+
+      <!-- Projects (D-10) -->
+      <section id="projects" class="section" aria-labelledby="projects-title">
+        <div class="container stack">
+          <h2 id="projects-title" class="section__title">Projects</h2>
+          <!-- T-05: project cards (accept-duplication blocks, D-28) -->
+          <ul role="list" class="grid grid--cards projects"></ul>
+        </div>
+      </section>
+
+      <!-- Skills & Tech (D-10) -->
+      <section id="skills" class="section" aria-labelledby="skills-title">
+        <div class="container stack">
+          <h2 id="skills-title" class="section__title">Skills &amp; Tech</h2>
+          <!-- T-05: skill chips -->
+          <ul role="list" class="cluster skills"></ul>
+        </div>
+      </section>
+
+      <!-- Contact (D-10) -->
+      <section id="contact" class="section" aria-labelledby="contact-title">
+        <div class="container stack">
+          <h2 id="contact-title" class="section__title">Get in touch</h2>
+          <!-- T-05: mailto + LinkedIn + GitHub (D-04) -->
+          <ul role="list" class="cluster contact-links"></ul>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container site-footer__inner">
+        <p class="site-footer__copy">&copy; 2026 Jason Kaufman</p>
+      </div>
+    </footer>
+
+    <script type="module" src="/js/main.js"></script>
+  </body>
+</html>
