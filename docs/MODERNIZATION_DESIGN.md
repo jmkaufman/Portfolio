@@ -137,7 +137,7 @@ Each decision has a stable ID (`D-NN`) referenced by the traceability matrix.
 | Decision(s) | Task ID | Task Description | Artifact / File(s) | Status |
 |-------------|---------|------------------|--------------------|--------|
 | D-01, D-03, D-07, D-19 | T-01 | Scaffold & cleanup; remove React/Parcel; dev-only tooling | repo structure, `package.json`, `.eslintrc`, `.prettierrc`, `.gitignore` | ✅ |
-| D-08, D-17, D-18, D-26 | T-02 | Design tokens | `styles/tokens.css` | Not started |
+| D-08, D-17, D-18, D-26 | T-02 | Design tokens | `styles/tokens.css` | ✅ |
 | D-08, D-13, D-15, D-30 | T-03 | Base & layout CSS (reset, responsive, print, reduced-motion) | `styles/base.css`, `styles/layout.css` | Not started |
 | D-05, D-06, D-10, D-11, D-14, D-21, D-29 | T-04 | Semantic HTML skeleton + head (meta/OG/JSON-LD), modulepreload, theme-init | `index.html` | Not started |
 | D-05, D-28, D-34 | T-05 | Content migration (accept-duplication blocks) | `index.html` content |  Not started |
