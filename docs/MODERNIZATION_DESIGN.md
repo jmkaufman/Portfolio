@@ -141,7 +141,7 @@ Each decision has a stable ID (`D-NN`) referenced by the traceability matrix.
 | D-08, D-13, D-15, D-30 | T-03 | Base & layout CSS (reset, responsive, print, reduced-motion) | `styles/base.css`, `styles/layout.css` | ✅ |
 | D-05, D-06, D-10, D-11, D-14, D-21, D-29 | T-04 | Semantic HTML skeleton + head (meta/OG/JSON-LD), modulepreload, theme-init | `index.html` | ✅ |
 | D-05, D-28, D-34 | T-05 | Content migration (accept-duplication blocks) | `index.html` content | ✅ |
-| D-11, D-13, D-16, D-18, D-34 | T-06 | Component styling; modern & bold; both themes; AA contrast | `styles/components.css` | Not started |
+| D-11, D-13, D-16, D-18, D-34 | T-06 | Component styling; modern & bold; both themes; AA contrast | `styles/components.css` | ✅ |
 | D-11, D-14, D-15 | T-07 | JS enhancements (theme toggle, nav highlight/smooth-scroll) | `js/main.js`, `js/theme.js`, `js/nav.js` | Not started |
 | D-24 | T-08 | Favicon set + minimal manifest | `assets/favicon.*`, `assets/icon-*.png`, `manifest.webmanifest` | Not started |
 | D-21 | T-09 | SEO & crawler files | OG/Twitter/JSON-LD, `sitemap.xml`, `robots.txt`, `assets/og-image.png` | Not started |

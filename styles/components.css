@@ -1,0 +1,438 @@
+/*
+ * components.css — visual styling for every section, in the "modern & bold"
+ * system bound by the seven D-16 guardrails: the hero headline is the single bold
+ * move per view; surfaces stay neutral; the indigo accent covers a small share of
+ * the surface (interactive/active states); the amber secondary appears once, on the
+ * hero eyebrow (D-18). All values reference tokens.css — no magic numbers (D-16 #3).
+ * Both themes resolve automatically through the light-dark() color tokens.
+ */
+
+/* ===== Header / nav (D-11) ============================================== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-header);
+  border-bottom: 1px solid var(--color-border);
+  background-color: color-mix(in srgb, var(--color-bg) 82%, transparent);
+  backdrop-filter: blur(10px);
+}
+
+/* Opaque fallback where backdrop-filter is unsupported (keeps text legible). */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .site-header {
+    background-color: var(--color-bg);
+  }
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  min-height: var(--header-height);
+}
+
+.site-header__brand {
+  margin-inline-end: auto;
+  color: var(--color-text);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-display);
+  letter-spacing: var(--tracking-tight);
+  text-decoration: none;
+}
+
+.primary-nav__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3xs);
+  align-items: center;
+}
+
+.primary-nav__link {
+  position: relative;
+  display: inline-block;
+  padding: var(--space-2xs) var(--space-xs);
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  transition: color var(--motion-fast) var(--ease-standard);
+}
+
+.primary-nav__link:hover {
+  color: var(--color-text);
+}
+
+/* Active section — aria-current set by nav.js (D-11, D-29) */
+.primary-nav__link[aria-current="true"] {
+  color: var(--color-accent);
+  font-weight: var(--weight-semibold);
+}
+
+.primary-nav__link[aria-current="true"]::after {
+  content: "";
+  position: absolute;
+  inset-inline: var(--space-xs);
+  bottom: -1px;
+  height: 2px;
+  background-color: var(--color-accent);
+  border-radius: var(--radius-full);
+}
+
+/* ===== Theme toggle (behavior in theme.js) ============================== */
+.theme-toggle {
+  display: inline-grid;
+  place-items: center;
+  padding: var(--space-2xs);
+  font-size: var(--text-xl);
+  color: var(--color-text-muted);
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition:
+    color var(--motion-fast) var(--ease-standard),
+    background-color var(--motion-fast) var(--ease-standard);
+}
+
+.theme-toggle:hover {
+  color: var(--color-text);
+  background-color: var(--color-surface-2);
+}
+
+.theme-toggle__icon {
+  width: 1em;
+  height: 1em;
+}
+
+/* Theme toggle hidden without JS — it cannot function (graceful, D-30) */
+.no-js .theme-toggle {
+  display: none;
+}
+
+/* Show the icon for the action the toggle performs. Default (light/auto-light)
+   shows the moon; dark shows the sun. Mirrors the color-scheme logic so the icon
+   matches the active theme in both manual and auto modes (D-14). */
+.theme-toggle__icon--sun {
+  display: none;
+}
+.theme-toggle__icon--moon {
+  display: block;
+}
+:root[data-theme="dark"] .theme-toggle__icon--moon {
+  display: none;
+}
+:root[data-theme="dark"] .theme-toggle__icon--sun {
+  display: block;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .theme-toggle__icon--moon {
+    display: none;
+  }
+  :root:not([data-theme="light"]) .theme-toggle__icon--sun {
+    display: block;
+  }
+}
+
+/* ===== Buttons ========================================================== */
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  padding: var(--space-2xs) var(--space-md);
+  font-size: var(--text-base);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-snug);
+  text-decoration: none;
+  white-space: nowrap;
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition:
+    color var(--motion-fast) var(--ease-standard),
+    background-color var(--motion-fast) var(--ease-standard),
+    border-color var(--motion-fast) var(--ease-standard),
+    transform var(--motion-fast) var(--ease-standard);
+}
+
+.button:hover {
+  transform: translateY(-1px);
+}
+
+.button--primary {
+  background-color: var(--color-accent);
+  color: var(--color-on-accent);
+}
+.button--primary:hover {
+  background-color: var(--color-accent-hover);
+  color: var(--color-on-accent);
+}
+
+.button--ghost {
+  background-color: transparent;
+  color: var(--color-text);
+  border-color: var(--color-border-strong);
+}
+.button--ghost:hover {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.button--sm {
+  padding: var(--space-3xs) var(--space-sm);
+  font-size: var(--text-sm);
+}
+
+/* ===== Section titles =================================================== */
+.section__title {
+  font-size: var(--text-4xl);
+}
+
+/* Short accent rule under each section title — disciplined primary accent. */
+.section__title::after {
+  content: "";
+  display: block;
+  width: var(--space-xl);
+  height: var(--space-3xs);
+  margin-block-start: var(--space-xs);
+  background-color: var(--color-accent);
+  border-radius: var(--radius-full);
+}
+
+/* ===== Hero (the one bold move, D-16 #1/#2) ============================= */
+.hero__content {
+  --flow-space: var(--space-sm);
+  max-width: 48rem;
+}
+
+.hero__eyebrow {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  /* The single, sparing use of the secondary accent (D-18). */
+  color: var(--color-secondary-text);
+}
+
+.hero__title {
+  font-size: var(--text-6xl);
+  font-weight: var(--weight-display);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+}
+
+.hero__bio {
+  max-width: 48ch;
+  font-size: var(--text-lg);
+  color: var(--color-text-muted);
+}
+
+.hero__actions {
+  gap: var(--space-sm);
+  margin-block-start: var(--space-md);
+}
+
+/* ===== Experience ======================================================= */
+.experience {
+  --flow-space: var(--space-xl);
+}
+
+.experience-group__employer {
+  font-size: var(--text-xl);
+  color: var(--color-text);
+}
+
+.experience-group__roles {
+  --flow-space: var(--space-md);
+  margin-block-start: var(--space-md);
+}
+
+.role {
+  padding: var(--space-md);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  transition: border-color var(--motion-base) var(--ease-standard);
+}
+
+.role:hover {
+  border-color: var(--color-border-strong);
+}
+
+.role__head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-2xs);
+}
+
+.role__title {
+  font-size: var(--text-lg);
+}
+
+.role__dates {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  font-variant-numeric: tabular-nums;
+}
+
+.role__meta {
+  display: grid;
+  gap: var(--space-2xs);
+  margin-block-start: var(--space-sm);
+}
+
+.role__meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2xs);
+}
+
+.role__meta dt {
+  flex: 0 0 auto;
+  min-width: 9ch; /* aligns values; sized to the longest label ("Languages") */
+  color: var(--color-text-subtle);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+}
+
+.role__meta dd {
+  margin: 0;
+  color: var(--color-text);
+  font-size: var(--text-sm);
+}
+
+/* ===== Project cards ==================================================== */
+.projects > li {
+  display: flex;
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition:
+    transform var(--motion-base) var(--ease-standard),
+    box-shadow var(--motion-base) var(--ease-standard),
+    border-color var(--motion-base) var(--ease-standard);
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-border-strong);
+  box-shadow: var(--shadow-lg);
+}
+
+.project-card__media {
+  aspect-ratio: 350 / 233;
+  background-color: var(--color-surface-2);
+}
+
+.project-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.project-card__body {
+  --flow-space: var(--space-2xs);
+  flex: 1;
+  padding: var(--space-md);
+}
+
+.project-card__title {
+  font-size: var(--text-xl);
+}
+
+.project-card__desc {
+  color: var(--color-text-muted);
+}
+
+.project-card__links {
+  gap: var(--space-2xs);
+  margin-block-start: var(--space-sm);
+}
+
+/* ===== Skills =========================================================== */
+.skills {
+  gap: var(--space-2xs);
+}
+
+.skill {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-3xs) var(--space-sm);
+  color: var(--color-text);
+  background-color: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+}
+
+/* ===== Contact ========================================================== */
+.contact__lead {
+  max-width: 52ch;
+  color: var(--color-text-muted);
+  font-size: var(--text-lg);
+}
+
+.contact-links {
+  gap: var(--space-sm);
+  margin-block-start: var(--space-md);
+}
+
+/* ===== Footer =========================================================== */
+.site-footer {
+  margin-block-start: var(--space-2xl);
+  padding-block: var(--space-xl);
+  border-top: 1px solid var(--color-border);
+}
+
+.site-footer__copy {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
+/* ===== Inline icons (D-09) ============================================== */
+.icon {
+  width: 1em;
+  height: 1em;
+  flex-shrink: 0;
+}
+
+.icon--external {
+  width: 0.8em;
+  height: 0.8em;
+}
+
+/* ===== Responsive: compact header (nav wraps below brand on mobile) ===== */
+@media (max-width: 47.99rem) {
+  .site-header__inner {
+    flex-wrap: wrap;
+    height: auto;
+    padding-block: var(--space-2xs);
+  }
+
+  .site-header__brand {
+    order: 1;
+  }
+
+  .theme-toggle {
+    order: 2;
+  }
+
+  .primary-nav {
+    order: 3;
+    flex-basis: 100%;
+  }
+
+  .primary-nav__list {
+    justify-content: center;
+  }
+}
