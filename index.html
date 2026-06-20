@@ -183,8 +183,12 @@
         <div class="container">
           <div class="split split--hero">
             <div class="hero__content stack">
-              <!-- T-05: eyebrow + bio paragraph -->
+              <p class="hero__eyebrow">Software Engineer</p>
               <h1 id="about-title" class="hero__title">Jason Kaufman</h1>
+              <p class="hero__bio">
+                A versatile software engineer with experience in real-time systems branching
+                out into full-stack technologies. Always excited to learn!
+              </p>
               <div class="hero__actions cluster">
                 <a class="button button--primary" href="#projects">View projects</a>
                 <a class="button button--ghost" href="#contact">Get in touch</a>
@@ -198,8 +202,53 @@
       <section id="experience" class="section" aria-labelledby="experience-title">
         <div class="container stack">
           <h2 id="experience-title" class="section__title">Experience</h2>
-          <!-- T-05: employer + roles (accept-duplication blocks, D-28) -->
-          <div class="experience stack"></div>
+          <!-- Employer group; duplicate the .experience-group block to add employers (D-28) -->
+          <div class="experience stack">
+            <article class="experience-group">
+              <h3 class="experience-group__employer">Epsilon C5I, Inc</h3>
+              <!-- Roles; duplicate the .role block to add roles (D-28) -->
+              <ol role="list" class="experience-group__roles stack">
+                <li class="role">
+                  <div class="role__head">
+                    <h4 class="role__title">Software Engineer, Raytheon GPNTS</h4>
+                    <p class="role__dates">
+                      <time datetime="2020-05">05/2020</time> &ndash;
+                      <time datetime="2022-07">07/2022</time>
+                    </p>
+                  </div>
+                  <dl class="role__meta">
+                    <div class="role__meta-row">
+                      <dt>Languages</dt>
+                      <dd>C++, Java, Python, C#</dd>
+                    </div>
+                    <div class="role__meta-row">
+                      <dt>Tools</dt>
+                      <dd>Linux, Git, Jenkins, Selenium WebDriver, Google Test</dd>
+                    </div>
+                  </dl>
+                </li>
+                <li class="role">
+                  <div class="role__head">
+                    <h4 class="role__title">Software Engineer, Raytheon SSDS</h4>
+                    <p class="role__dates">
+                      <time datetime="2018-07">07/2018</time> &ndash;
+                      <time datetime="2020-04">04/2020</time>
+                    </p>
+                  </div>
+                  <dl class="role__meta">
+                    <div class="role__meta-row">
+                      <dt>Languages</dt>
+                      <dd>C++, Java</dd>
+                    </div>
+                    <div class="role__meta-row">
+                      <dt>Tools</dt>
+                      <dd>Linux, Java Swing, Git</dd>
+                    </div>
+                  </dl>
+                </li>
+              </ol>
+            </article>
+          </div>
         </div>
       </section>
 
@@ -207,8 +256,49 @@
       <section id="projects" class="section" aria-labelledby="projects-title">
         <div class="container stack">
           <h2 id="projects-title" class="section__title">Projects</h2>
-          <!-- T-05: project cards (accept-duplication blocks, D-28) -->
-          <ul role="list" class="grid grid--cards projects"></ul>
+          <!-- Project cards; duplicate the .project-card <li> to add projects (D-28) -->
+          <ul role="list" class="grid grid--cards projects">
+            <li>
+              <article class="project-card">
+                <div class="project-card__media">
+                  <img
+                    src="/assets/img/pong-thumbnail.png"
+                    alt="Screenshot of the Pong game built in React"
+                    width="350"
+                    height="233"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                <div class="project-card__body stack">
+                  <h3 class="project-card__title">Pong</h3>
+                  <p class="project-card__desc">Pong built entirely in React</p>
+                  <div class="project-card__links cluster">
+                    <a
+                      class="button button--sm button--primary"
+                      href="https://pong.jasonkaufman.dev"
+                      target="_blank"
+                      rel="noopener"
+                    >
+                      Live site
+                      <svg class="icon icon--external" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7" /><path d="M9 7h8v8" /></svg>
+                      <span class="visually-hidden">(opens in a new tab)</span>
+                    </a>
+                    <a
+                      class="button button--sm button--ghost"
+                      href="https://github.com/jmkaufman/Pong"
+                      target="_blank"
+                      rel="noopener"
+                    >
+                      Source
+                      <svg class="icon icon--external" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7" /><path d="M9 7h8v8" /></svg>
+                      <span class="visually-hidden">(opens in a new tab)</span>
+                    </a>
+                  </div>
+                </div>
+              </article>
+            </li>
+          </ul>
         </div>
       </section>
 
@@ -216,8 +306,18 @@
       <section id="skills" class="section" aria-labelledby="skills-title">
         <div class="container stack">
           <h2 id="skills-title" class="section__title">Skills &amp; Tech</h2>
-          <!-- T-05: skill chips -->
-          <ul role="list" class="cluster skills"></ul>
+          <ul role="list" class="cluster skills">
+            <li class="skill">C++</li>
+            <li class="skill">Java</li>
+            <li class="skill">Python</li>
+            <li class="skill">C#</li>
+            <li class="skill">Linux</li>
+            <li class="skill">Git</li>
+            <li class="skill">Jenkins</li>
+            <li class="skill">Selenium WebDriver</li>
+            <li class="skill">Google Test</li>
+            <li class="skill">Java Swing</li>
+          </ul>
         </div>
       </section>
 
@@ -225,8 +325,42 @@
       <section id="contact" class="section" aria-labelledby="contact-title">
         <div class="container stack">
           <h2 id="contact-title" class="section__title">Get in touch</h2>
-          <!-- T-05: mailto + LinkedIn + GitHub (D-04) -->
-          <ul role="list" class="cluster contact-links"></ul>
+          <p class="contact__lead">
+            Email is the best way to reach me &mdash; or find me on LinkedIn and GitHub.
+          </p>
+          <!-- Plain, un-obfuscated mailto (D-31); external links carry rel=noopener (D-20) -->
+          <ul role="list" class="cluster contact-links">
+            <li>
+              <a class="button button--primary" href="mailto:jkaufman217@gmail.com">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m3 7 9 6 9-6" /></svg>
+                jkaufman217@gmail.com
+              </a>
+            </li>
+            <li>
+              <a
+                class="button button--ghost"
+                href="https://www.linkedin.com/in/jason-m-kaufman/"
+                target="_blank"
+                rel="noopener"
+              >
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z" /></svg>
+                LinkedIn
+                <span class="visually-hidden">(opens in a new tab)</span>
+              </a>
+            </li>
+            <li>
+              <a
+                class="button button--ghost"
+                href="https://github.com/jmkaufman"
+                target="_blank"
+                rel="noopener"
+              >
+                <svg class="icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z" /></svg>
+                GitHub
+                <span class="visually-hidden">(opens in a new tab)</span>
+              </a>
+            </li>
+          </ul>
         </div>
       </section>
     </main>
