@@ -4,31 +4,63 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Overview
 
-Personal portfolio website (jasonkaufman.dev), built with React 18 + TypeScript and bundled by Parcel. Hosted on AWS. Single-page app with all content rendered on one route (`/`).
+Personal portfolio website (jasonkaufman.dev): a **zero-build, framework-free static
+site** — hand-authored semantic HTML, plain CSS with custom properties, and vanilla
+JavaScript (native ES modules). No bundler and no runtime dependencies; the deployed
+artifact is pure static files. Hosted on GitHub Pages. Single page (`index.html`) with
+in-page sections.
+
+> This replaced an earlier React 18 + TypeScript + Parcel SPA. The rebuild is recorded
+> in `docs/` — design decisions (D-01…D-36) in `docs/MODERNIZATION_DESIGN.md`, the task
+> plan in `docs/IMPLEMENTATION_PLAN.md`. Treat those decisions as binding.
 
 ## Commands
 
-- `npm start` — dev server with hot reload (Parcel, entry `src/index.html`)
-- `npm run build` — production build to `dist/`
-- `npx eslint src` — lint (no npm script defined for it)
+There is **no build step**. Serve the project root over HTTP (needed for ES modules):
 
-There is no test suite.
+- VS Code **Live Server** ("Go Live"), `npx serve`, or `python -m http.server`
+- `npm install` then `npm run lint` (ESLint) / `npm run format` (Prettier) — dev-only
+  tooling in `devDependencies`, never shipped (D-19)
+
+CI (`.github/workflows/verify.yml`) runs Lighthouse + W3C HTML validation + link-check
+on push/PR. There is no unit-test suite (testing is via those checks, D-23).
 
 ## Architecture
 
-The app is a single-page composition with no client-side routing branches in practice — `App.tsx` defines one `<Route path="/">` rendering `Home`. `Home` stacks the page sections: `TopBar`, `About`, `WorkHistory`, `Projects`.
+- `index.html` — all content, hardcoded in semantic HTML (D-05). Landmarks + five
+  sections (About/Hero, Experience, Projects, Skills, Contact). The `<head>` carries
+  meta/OG/Twitter/JSON-LD, inline critical CSS, and an inline theme-init script.
+- `styles/` — `tokens.css` (the single source of truth for all visual primitives —
+  color, type scale, spacing, radii, shadow, motion; D-26), then `base.css`,
+  `layout.css`, `components.css`. Theming uses the native `light-dark()` function
+  driven by `color-scheme`; the manual toggle sets `[data-theme]` (D-14).
+- `js/` — ES modules: `main.js` (entry), `theme.js` (toggle + localStorage),
+  `nav.js` (active-section highlight). JS is **enhancement only** — content and a
+  sensible default theme work with JS disabled.
+- `assets/` — favicon set, `og-image.png`, `img/pong-thumbnail.webp` (+ png fallback).
+- `404.html`, `styleguide.html` (token/component gallery), plus `CNAME`, `robots.txt`,
+  `sitemap.xml`, `manifest.webmanifest`, `.nojekyll`.
 
-**Data-driven sections.** `WorkHistory` and `Projects` are the only dynamic parts. Both follow the same pattern:
-- On mount, a `useEffect` IIFE `fetch`es a JSON file from `public/data/` (`WorkHistory.json`, `PersonalProjects.json`), stores it in `useState`, and shows `"Loading..."` until it resolves.
-- The fetched array is mapped into child "Block" components (`WorkHistoryBlock`, `ProjectsBlock`).
-- The JSON shape is mirrored by TypeScript types in the corresponding `*Models.ts` file (`WorkHistoryModels.ts`, `PersonalProjectsModels.ts`). **When editing the data JSON, keep the matching `*Models.ts` type in sync.**
+**To change content** (jobs, projects, skills, contact), edit `index.html` directly.
+Repeated blocks (experience entries, project cards) are intentionally duplicated markup
+(D-28) — copy a `.role` / `.project-card` block to add one. There is no data file or
+templating.
 
-To change portfolio content (jobs, projects), edit the JSON in `public/data/` — not the components. These files are served as static assets via `parcel-reporter-static-files-copy` (configured by `staticFiles` in `package.json`); the whole `public/` dir is copied into the build.
-
-**Styling.** One CSS file per top-level component in `src/stylesheets/`, imported at the top of its component (e.g. `import "./stylesheets/Home.css"`). No CSS-in-JS or modules.
+**Image assets** (favicons, OG card, WebP thumbnail) are generated with dev-only Python
++ Pillow scripts; they are not part of the shipped site. See git history for T-08/T-09.
 
 ## Conventions
 
-- ESLint extends `eslint:recommended` + `@typescript-eslint/recommended`; `prefer-const` is disabled, so `let` for never-reassigned locals is allowed (note: a recent commit migrated many to `const` anyway).
-- Components are typed `(): JSX.Element` and default-exported.
-- TypeScript config is minimal (`@tsconfig/node16` base, `jsx: react-jsx`, `lib: DOM`).
+- Filenames kebab-case; CSS classes light-BEM (`.project-card__title`).
+- No magic numbers in CSS — every value references a token in `styles/tokens.css`.
+- Comments use an objective tone and reference the decision ID when explaining *why*,
+  e.g. `/* meta CSP per D-20/D-31 */` (D-36).
+- Modern browsers only (D-07): native ES modules, `light-dark()`, `color-mix()`, etc.
+- Security: meta CSP (the inline theme-init is allowlisted by a SHA-256 hash — recompute
+  it if that script changes; `.gitattributes` pins web assets to LF to keep the hash
+  stable). See `docs/SECURITY.md`.
+
+## Deploy
+
+Working branch → `gh-pages` (served at the root by GitHub Pages). See `docs/DEPLOY.md`
+for the publish commands, Pages settings, and DNS.
