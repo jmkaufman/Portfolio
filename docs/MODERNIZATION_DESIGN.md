@@ -147,7 +147,7 @@ Each decision has a stable ID (`D-NN`) referenced by the traceability matrix.
 | D-21 | T-09 | SEO & crawler files | OG/Twitter/JSON-LD, `sitemap.xml`, `robots.txt`, `assets/og-image.png` | ✅ |
 | D-20, D-31 | T-10 | Security hardening (meta CSP, `rel=noopener`, plain mailto, posture docs) | `index.html` head + links | ✅ |
 | D-12, D-29 | T-11 | Accessibility pass | skip-link, focus styles, ARIA labels, alt text across HTML/CSS/JS | ✅ |
-| D-27 | T-12 | Style guide page | `styleguide.html` | Not started |
+| D-27 | T-12 | Style guide page | `styleguide.html` | ✅ |
 | D-02, D-25, D-30, D-32 | T-13 | Deploy config (CNAME, 404, deploy-branch root) | `CNAME`, `404.html`, GH Pages settings | Not started |
 | D-23, D-33 | T-14 | Verification (local preview, Lighthouse, HTML/link checks) | check results | Not started |
 | D-35 | T-15 | CI workflow | `.github/workflows/verify.yml` | Not started |
