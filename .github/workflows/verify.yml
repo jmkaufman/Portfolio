@@ -1,0 +1,60 @@
+# Verification CI (D-35): runs the D-23 checks — Lighthouse, W3C HTML validation,
+# and broken-link checking — on every push and pull request. Everything runs in the
+# ephemeral GitHub-hosted runner; nothing is added to the repo or the shipped site
+# (consistent with the dev-only tooling posture, D-19).
+name: Verify
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  html-validate:
+    name: W3C HTML validation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      # Runs the Nu (validator.nu) checker over the HTML pages; fails on any error.
+      - name: Validate HTML
+        uses: Cyb3r-Jak3/html5validator-action@v7.2.0
+        with:
+          root: .
+          css: true
+
+  links:
+    name: Broken-link check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      # The site's own absolute URLs (jasonkaufman.dev / *.jasonkaufman.dev) and the
+      # bot-protected LinkedIn URL are excluded — they are validated post-deploy
+      # (docs/VERIFICATION.md), not against an undeployed apex during CI.
+      - name: Check links
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: >-
+            --no-progress
+            --base .
+            --exclude "jasonkaufman\.dev"
+            --exclude "linkedin\.com"
+            index.html
+            404.html
+            styleguide.html
+          fail: true
+
+  lighthouse:
+    name: Lighthouse (>= 95 all categories)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      # lhci serves the static site and asserts performance/a11y/best-practices/SEO
+      # >= 0.95 against index.html (thresholds in .lighthouserc.json). numberOfRuns
+      # takes the median to reduce runner variance.
+      - name: Lighthouse CI
+        run: npx --yes @lhci/cli@0.14.x autorun
