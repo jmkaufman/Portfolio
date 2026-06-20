@@ -88,6 +88,7 @@
     <link rel="icon" href="/assets/favicon.ico" sizes="32x32" />
     <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="Jason Kaufman" />
     <link rel="manifest" href="/manifest.webmanifest" />
 
     <!-- JSON-LD Person (D-21) -->
@@ -261,14 +262,17 @@
             <li>
               <article class="project-card">
                 <div class="project-card__media">
-                  <img
-                    src="/assets/img/pong-thumbnail.png"
-                    alt="Screenshot of the Pong game built in React"
-                    width="350"
-                    height="233"
-                    loading="lazy"
-                    decoding="async"
-                  />
+                  <picture>
+                    <source srcset="/assets/img/pong-thumbnail.webp" type="image/webp" />
+                    <img
+                      src="/assets/img/pong-thumbnail.png"
+                      alt="Screenshot of the Pong game built in React"
+                      width="350"
+                      height="233"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </picture>
                 </div>
                 <div class="project-card__body stack">
                   <h3 class="project-card__title">Pong</h3>

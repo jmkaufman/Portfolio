@@ -1,0 +1,24 @@
+{
+  "name": "Jason Kaufman — Software Engineer",
+  "short_name": "Jason Kaufman",
+  "description": "Portfolio of Jason Kaufman, software engineer.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "theme_color": "#4f46e5",
+  "background_color": "#0b0e14",
+  "icons": [
+    {
+      "src": "/assets/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ]
+}
