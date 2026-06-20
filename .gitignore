@@ -2,6 +2,9 @@
 node_modules/
 .eslintcache
 
+# Local Claude Code config (incl. preview launch.json) — not a site artifact
+.claude/
+
 # Logs
 *.log
 npm-debug.log*
