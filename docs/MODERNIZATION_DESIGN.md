@@ -144,7 +144,7 @@ Each decision has a stable ID (`D-NN`) referenced by the traceability matrix.
 | D-11, D-13, D-16, D-18, D-34 | T-06 | Component styling; modern & bold; both themes; AA contrast | `styles/components.css` | ✅ |
 | D-11, D-14, D-15 | T-07 | JS enhancements (theme toggle, nav highlight/smooth-scroll) | `js/main.js`, `js/theme.js`, `js/nav.js` | ✅ |
 | D-24 | T-08 | Favicon set + minimal manifest | `assets/favicon.*`, `assets/icon-*.png`, `manifest.webmanifest` | ✅ |
-| D-21 | T-09 | SEO & crawler files | OG/Twitter/JSON-LD, `sitemap.xml`, `robots.txt`, `assets/og-image.png` | Not started |
+| D-21 | T-09 | SEO & crawler files | OG/Twitter/JSON-LD, `sitemap.xml`, `robots.txt`, `assets/og-image.png` | ✅ |
 | D-20, D-31 | T-10 | Security hardening (meta CSP, `rel=noopener`, plain mailto, posture docs) | `index.html` head + links | Not started |
 | D-12, D-29 | T-11 | Accessibility pass | skip-link, focus styles, ARIA labels, alt text across HTML/CSS/JS | Not started |
 | D-27 | T-12 | Style guide page | `styleguide.html` | Not started |
