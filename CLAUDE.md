@@ -19,11 +19,13 @@ in-page sections.
 There is **no build step**. Serve the project root over HTTP (needed for ES modules):
 
 - VS Code **Live Server** ("Go Live"), `npx serve`, or `python -m http.server`
-- `npm install` then `npm run lint` (ESLint) / `npm run format` (Prettier) — dev-only
-  tooling in `devDependencies`, never shipped (D-19)
+- `npm install` then `npm run lint` (ESLint) / `npm run format` (Prettier, writes) /
+  `npm run format:check` (Prettier, verify only) — dev-only tooling in
+  `devDependencies`, never shipped (D-19)
 
-CI (`.github/workflows/verify.yml`) runs Lighthouse + W3C HTML validation + link-check
-on push/PR. There is no unit-test suite (testing is via those checks, D-23).
+CI (`.github/workflows/verify.yml`) runs Lighthouse (config in `.lighthouserc.json`) +
+W3C HTML validation + link-check on push/PR. There is no unit-test suite (testing is via
+those checks, D-23).
 
 ## Architecture
 
