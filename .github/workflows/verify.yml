@@ -29,21 +29,26 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      # The site's own absolute URLs (jasonkaufman.dev / *.jasonkaufman.dev) and the
-      # bot-protected LinkedIn URL are excluded — they are validated post-deploy
-      # (docs/VERIFICATION.md), not against an undeployed apex during CI.
+      # --root-dir resolves the site's root-absolute links (/styles, /js, /assets)
+      # against the repo root so local assets aren't reported as broken. The site's
+      # own absolute URLs (jasonkaufman.dev / *.jasonkaufman.dev) and the bot-protected
+      # LinkedIn URL are excluded — validated post-deploy (docs/VERIFICATION.md), not
+      # against the undeployed apex during CI. mailto is format-checked (--exclude-mail).
       - name: Check links
         uses: lycheeverse/lychee-action@v2
         with:
           args: >-
             --no-progress
-            --base .
+            --root-dir ${{ github.workspace }}
             --exclude "jasonkaufman\.dev"
             --exclude "linkedin\.com"
+            --exclude-mail
             index.html
             404.html
             styleguide.html
           fail: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   lighthouse:
     name: Lighthouse (>= 95 all categories)
