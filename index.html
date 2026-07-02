@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!--
+      Content-Security-Policy via <meta> — GitHub Pages cannot set response headers
+      (D-20/D-31). All resources are same-origin; no third-party scripts/CDNs. The
+      inline theme-init script is allowed by its SHA-256 hash; inline CSS uses
+      style-src 'unsafe-inline' (style injection is low-risk with no user input on a
+      static site). frame-ancestors/report-uri cannot be expressed in meta and are
+      not needed here — no auth or state-changing actions (D-31).
+    -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' 'sha256-16eiVbLeiP8LfS4Ts9dQbwPpUkXuV8uq0Iuk8yPDWDE='; style-src 'self' 'unsafe-inline'; img-src 'self'; font-src 'self'; connect-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'"
+    />
+
+    <!--
+      Critical CSS (D-06) + no-flash theme bootstrap (D-14). Painted before the
+      external stylesheets load: color-scheme + the system colors Canvas/CanvasText
+      theme the first paint to the resolved theme without duplicating token values.
+    -->
+    <style>
+      :root {
+        color-scheme: light dark;
+      }
+      :root[data-theme="light"] {
+        color-scheme: light;
+      }
+      :root[data-theme="dark"] {
+        color-scheme: dark;
+      }
+      html {
+        background-color: Canvas;
+      }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family:
+          system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        background-color: Canvas;
+        color: CanvasText;
+      }
+    </style>
+    <script>
+      // Theme bootstrap (D-14): apply the stored preference before first paint to
+      // avoid a flash of the wrong theme. With no stored preference the OS setting
+      // is followed via color-scheme: light dark. Also flips the no-js → js hook so
+      // JS-only controls (e.g. the theme toggle) are hidden when JS is unavailable
+      // (graceful degradation, D-05/D-30). Hashed in the meta CSP (D-20/D-31).
+      (function () {
+        var root = document.documentElement;
+        root.classList.remove("no-js");
+        root.classList.add("js");
+        try {
+          var stored = localStorage.getItem("theme");
+          if (stored === "light" || stored === "dark") {
+            root.setAttribute("data-theme", stored);
+            root.style.colorScheme = stored;
+          }
+        } catch (e) {
+          /* localStorage unavailable — fall back to OS preference */
+        }
+      })();
+    </script>
+
+    <title>Jason Kaufman — Software Engineer</title>
+    <meta
+      name="description"
+      content="Jason Kaufman is a software engineer with a background in real-time systems, branching into full-stack. Experience, projects, and contact."
+    />
+    <link rel="canonical" href="https://jasonkaufman.dev/" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0b0e14" media="(prefers-color-scheme: dark)" />
+
+    <!-- Open Graph (D-21); og:image asset wired in T-09 -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Jason Kaufman" />
+    <meta property="og:title" content="Jason Kaufman — Software Engineer" />
+    <meta
+      property="og:description"
+      content="Software engineer with a background in real-time systems, branching into full-stack."
+    />
+    <meta property="og:url" content="https://jasonkaufman.dev/" />
+    <meta property="og:image" content="https://jasonkaufman.dev/assets/og-image.png" />
+    <meta property="og:image:alt" content="Jason Kaufman — Software Engineer" />
+
+    <!-- Twitter Card (D-21) -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Jason Kaufman — Software Engineer" />
+    <meta
+      name="twitter:description"
+      content="Software engineer with a background in real-time systems, branching into full-stack."
+    />
+    <meta name="twitter:image" content="https://jasonkaufman.dev/assets/og-image.png" />
+
+    <!-- Icons + manifest (assets created in T-08) -->
+    <link rel="icon" href="/assets/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="Jason Kaufman" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+
+    <!-- JSON-LD Person (D-21) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Jason Kaufman",
+        "url": "https://jasonkaufman.dev",
+        "jobTitle": "Software Engineer",
+        "email": "mailto:jkaufman217@gmail.com",
+        "worksFor": { "@type": "Organization", "name": "Epsilon C5I, Inc" },
+        "sameAs": [
+          "https://www.linkedin.com/in/jason-m-kaufman/",
+          "https://github.com/jmkaufman"
+        ],
+        "knowsAbout": [
+          "C++",
+          "Java",
+          "Python",
+          "C#",
+          "Linux",
+          "Git",
+          "Jenkins",
+          "Selenium WebDriver",
+          "Google Test",
+          "Java Swing"
+        ]
+      }
+    </script>
+
+    <!-- Stylesheets (tokens → base → layout → components). components.css lands in T-06. -->
+    <link rel="stylesheet" href="/styles/tokens.css" />
+    <link rel="stylesheet" href="/styles/base.css" />
+    <link rel="stylesheet" href="/styles/layout.css" />
+    <link rel="stylesheet" href="/styles/components.css" />
+
+    <!-- Module preload (D-06); modules authored in T-07 -->
+    <link rel="modulepreload" href="/js/main.js" />
+    <link rel="modulepreload" href="/js/theme.js" />
+    <link rel="modulepreload" href="/js/nav.js" />
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header no-print">
+      <div class="container site-header__inner">
+        <a class="site-header__brand" href="#about" aria-label="Jason Kaufman — home">JK</a>
+
+        <nav class="primary-nav" aria-label="Primary">
+          <ul role="list" class="primary-nav__list">
+            <li><a class="primary-nav__link" href="#about">About</a></li>
+            <li><a class="primary-nav__link" href="#experience">Experience</a></li>
+            <li><a class="primary-nav__link" href="#projects">Projects</a></li>
+            <li><a class="primary-nav__link" href="#skills">Skills</a></li>
+            <li><a class="primary-nav__link" href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+
+        <button
+          class="theme-toggle"
+          type="button"
+          aria-label="Toggle color theme"
+          aria-pressed="false"
+        >
+          <svg class="theme-toggle__icon theme-toggle__icon--sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <circle cx="12" cy="12" r="4.5" fill="currentColor" />
+            <g stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <line x1="12" y1="2" x2="12" y2="5" />
+              <line x1="12" y1="19" x2="12" y2="22" />
+              <line x1="2" y1="12" x2="5" y2="12" />
+              <line x1="19" y1="12" x2="22" y2="12" />
+              <line x1="4.6" y1="4.6" x2="6.7" y2="6.7" />
+              <line x1="17.3" y1="17.3" x2="19.4" y2="19.4" />
+              <line x1="4.6" y1="19.4" x2="6.7" y2="17.3" />
+              <line x1="17.3" y1="6.7" x2="19.4" y2="4.6" />
+            </g>
+          </svg>
+          <svg class="theme-toggle__icon theme-toggle__icon--moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path
+              d="M20 14.5A8 8 0 1 1 9.5 4 6.5 6.5 0 0 0 20 14.5Z"
+              fill="currentColor"
+            />
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <main id="main" tabindex="-1">
+      <!-- About / Hero (D-10) -->
+      <section id="about" class="section hero" aria-labelledby="about-title">
+        <div class="container">
+          <div class="split split--hero">
+            <div class="hero__content stack">
+              <p class="hero__eyebrow">Software Engineer</p>
+              <h1 id="about-title" class="hero__title">Jason Kaufman</h1>
+              <p class="hero__bio">
+                A versatile software engineer with experience in real-time systems branching
+                out into full-stack technologies. Always excited to learn!
+              </p>
+              <div class="hero__actions cluster">
+                <a class="button button--primary" href="#projects">View projects</a>
+                <a class="button button--ghost" href="#contact">Get in touch</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Experience (D-10) -->
+      <section id="experience" class="section" aria-labelledby="experience-title">
+        <div class="container stack">
+          <h2 id="experience-title" class="section__title">Experience</h2>
+          <!-- Employer group; duplicate the .experience-group block to add employers (D-28) -->
+          <div class="experience stack">
+            <article class="experience-group">
+              <h3 class="experience-group__employer">Epsilon C5I, Inc</h3>
+              <!-- Roles; duplicate the .role block to add roles (D-28) -->
+              <ol role="list" class="experience-group__roles stack">
+                <li class="role">
+                  <div class="role__head">
+                    <h4 class="role__title">Software Engineer, Raytheon GPNTS</h4>
+                    <p class="role__dates">
+                      <time datetime="2020-05">05/2020</time> &ndash;
+                      <time datetime="2022-07">07/2022</time>
+                    </p>
+                  </div>
+                  <dl class="role__meta">
+                    <div class="role__meta-row">
+                      <dt>Languages</dt>
+                      <dd>C++, Java, Python, C#</dd>
+                    </div>
+                    <div class="role__meta-row">
+                      <dt>Tools</dt>
+                      <dd>Linux, Git, Jenkins, Selenium WebDriver, Google Test</dd>
+                    </div>
+                  </dl>
+                </li>
+                <li class="role">
+                  <div class="role__head">
+                    <h4 class="role__title">Software Engineer, Raytheon SSDS</h4>
+                    <p class="role__dates">
+                      <time datetime="2018-07">07/2018</time> &ndash;
+                      <time datetime="2020-04">04/2020</time>
+                    </p>
+                  </div>
+                  <dl class="role__meta">
+                    <div class="role__meta-row">
+                      <dt>Languages</dt>
+                      <dd>C++, Java</dd>
+                    </div>
+                    <div class="role__meta-row">
+                      <dt>Tools</dt>
+                      <dd>Linux, Java Swing, Git</dd>
+                    </div>
+                  </dl>
+                </li>
+              </ol>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Projects (D-10) -->
+      <section id="projects" class="section" aria-labelledby="projects-title">
+        <div class="container stack">
+          <h2 id="projects-title" class="section__title">Projects</h2>
+          <!-- Project cards; duplicate the .project-card <li> to add projects (D-28) -->
+          <ul role="list" class="grid grid--cards projects">
+            <li>
+              <article class="project-card">
+                <div class="project-card__media">
+                  <picture>
+                    <source srcset="/assets/img/pong-thumbnail.webp" type="image/webp" />
+                    <img
+                      src="/assets/img/pong-thumbnail.png"
+                      alt="Screenshot of the Pong game built in React"
+                      width="350"
+                      height="233"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </picture>
+                </div>
+                <div class="project-card__body stack">
+                  <h3 class="project-card__title">Pong</h3>
+                  <p class="project-card__desc">Pong built entirely in React</p>
+                  <div class="project-card__links cluster">
+                    <a
+                      class="button button--sm button--primary"
+                      href="https://pong.jasonkaufman.dev"
+                      target="_blank"
+                      rel="noopener"
+                    >
+                      Live site
+                      <svg class="icon icon--external" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7" /><path d="M9 7h8v8" /></svg>
+                      <span class="visually-hidden">(opens in a new tab)</span>
+                    </a>
+                    <a
+                      class="button button--sm button--ghost"
+                      href="https://github.com/jmkaufman/Pong"
+                      target="_blank"
+                      rel="noopener"
+                    >
+                      Source
+                      <svg class="icon icon--external" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7" /><path d="M9 7h8v8" /></svg>
+                      <span class="visually-hidden">(opens in a new tab)</span>
+                    </a>
+                  </div>
+                </div>
+              </article>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Skills & Tech (D-10) -->
+      <section id="skills" class="section" aria-labelledby="skills-title">
+        <div class="container stack">
+          <h2 id="skills-title" class="section__title">Skills &amp; Tech</h2>
+          <ul role="list" class="cluster skills">
+            <li class="skill">C++</li>
+            <li class="skill">Java</li>
+            <li class="skill">Python</li>
+            <li class="skill">C#</li>
+            <li class="skill">Linux</li>
+            <li class="skill">Git</li>
+            <li class="skill">Jenkins</li>
+            <li class="skill">Selenium WebDriver</li>
+            <li class="skill">Google Test</li>
+            <li class="skill">Java Swing</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Contact (D-10) -->
+      <section id="contact" class="section" aria-labelledby="contact-title">
+        <div class="container stack">
+          <h2 id="contact-title" class="section__title">Get in touch</h2>
+          <p class="contact__lead">
+            Email is the best way to reach me &mdash; or find me on LinkedIn and GitHub.
+          </p>
+          <!-- Plain, un-obfuscated mailto (D-31); external links carry rel=noopener (D-20) -->
+          <ul role="list" class="cluster contact-links">
+            <li>
+              <a class="button button--primary" href="mailto:jkaufman217@gmail.com">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m3 7 9 6 9-6" /></svg>
+                jkaufman217@gmail.com
+              </a>
+            </li>
+            <li>
+              <a
+                class="button button--ghost"
+                href="https://www.linkedin.com/in/jason-m-kaufman/"
+                target="_blank"
+                rel="noopener"
+              >
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z" /></svg>
+                LinkedIn
+                <span class="visually-hidden">(opens in a new tab)</span>
+              </a>
+            </li>
+            <li>
+              <a
+                class="button button--ghost"
+                href="https://github.com/jmkaufman"
+                target="_blank"
+                rel="noopener"
+              >
+                <svg class="icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z" /></svg>
+                GitHub
+                <span class="visually-hidden">(opens in a new tab)</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container site-footer__inner">
+        <p class="site-footer__copy">&copy; Jason Kaufman</p>
+      </div>
+    </footer>
+
+    <script type="module" src="/js/main.js"></script>
+  </body>
+</html>

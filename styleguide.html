@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self'; object-src 'none'; base-uri 'self'"
+    />
+    <title>Style Guide — Jason Kaufman</title>
+    <meta name="robots" content="noindex" />
+    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/styles/tokens.css" />
+    <link rel="stylesheet" href="/styles/base.css" />
+    <link rel="stylesheet" href="/styles/layout.css" />
+    <link rel="stylesheet" href="/styles/components.css" />
+
+    <!-- Style-guide-only layout. Demo-box dimensions here are documentation chrome,
+         not part of the shipped design system (D-27). -->
+    <style>
+      .sg-page-header {
+        padding: var(--space-xl) var(--container-pad);
+        border-bottom: 1px solid var(--color-border);
+      }
+      .sg-page-header p {
+        margin-block-start: var(--space-2xs);
+        color: var(--color-text-muted);
+        max-width: 60ch;
+      }
+      .sg-panels {
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+      @media (min-width: 64rem) {
+        .sg-panels {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      .sg-panel {
+        color-scheme: light;
+        background-color: var(--color-bg);
+        color: var(--color-text);
+        padding: var(--space-xl);
+      }
+      .sg-panel--dark {
+        color-scheme: dark;
+      }
+      .sg-panel + .sg-panel {
+        border-top: 1px solid var(--color-border);
+      }
+      @media (min-width: 64rem) {
+        .sg-panel + .sg-panel {
+          border-top: 0;
+          border-inline-start: 1px solid var(--color-border);
+        }
+      }
+      .sg-panel__title {
+        font-size: var(--text-sm);
+        text-transform: uppercase;
+        letter-spacing: var(--tracking-wide);
+        color: var(--color-text-muted);
+      }
+      .sg-section {
+        margin-block-start: var(--space-xl);
+      }
+      .sg-section > h3 {
+        font-size: var(--text-sm);
+        text-transform: uppercase;
+        letter-spacing: var(--tracking-wide);
+        color: var(--color-text-subtle);
+        margin-block-end: var(--space-sm);
+      }
+      .sg-label {
+        font-family: var(--font-mono);
+        font-size: var(--text-xs);
+        color: var(--color-text-subtle);
+      }
+      .sg-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-sm);
+        align-items: center;
+      }
+      .sg-stack > * + * {
+        margin-block-start: var(--space-sm);
+      }
+      .sg-swatches {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(7rem, 1fr));
+        gap: var(--space-sm);
+      }
+      .sg-swatch {
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-md);
+        overflow: hidden;
+      }
+      .sg-swatch__chip {
+        height: 3rem;
+      }
+      .sg-swatch__meta {
+        padding: var(--space-2xs);
+      }
+      .sg-bar {
+        height: var(--space-sm);
+        background-color: var(--color-accent);
+        border-radius: var(--radius-sm);
+      }
+      .sg-radii {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-sm);
+      }
+      .sg-radii > div {
+        width: 4rem;
+        height: 4rem;
+        background-color: var(--color-surface-2);
+        border: 1px solid var(--color-border-strong);
+      }
+      .sg-shadow-box {
+        width: 8rem;
+        height: 5rem;
+        background-color: var(--color-surface);
+        border-radius: var(--radius-md);
+      }
+
+      /* Token reference classes (so the gallery has no inline style attributes) */
+      .sw-bg { background-color: var(--color-bg); }
+      .sw-surface { background-color: var(--color-surface); }
+      .sw-surface-2 { background-color: var(--color-surface-2); }
+      .sw-text { background-color: var(--color-text); }
+      .sw-text-muted { background-color: var(--color-text-muted); }
+      .sw-text-subtle { background-color: var(--color-text-subtle); }
+      .sw-border { background-color: var(--color-border); }
+      .sw-border-strong { background-color: var(--color-border-strong); }
+      .sw-accent { background-color: var(--color-accent); }
+      .sw-accent-hover { background-color: var(--color-accent-hover); }
+      .sw-on-accent { background-color: var(--color-on-accent); }
+      .sw-accent-surface { background-color: var(--color-accent-surface); }
+      .sw-secondary { background-color: var(--color-secondary); }
+      .sw-secondary-text { background-color: var(--color-secondary-text); }
+
+      .t-6xl { font-size: var(--text-6xl); font-weight: var(--weight-display); line-height: var(--leading-tight); }
+      .t-5xl { font-size: var(--text-5xl); font-weight: var(--weight-bold); line-height: var(--leading-tight); }
+      .t-4xl { font-size: var(--text-4xl); font-weight: var(--weight-bold); line-height: var(--leading-tight); }
+      .t-3xl { font-size: var(--text-3xl); font-weight: var(--weight-bold); }
+      .t-2xl { font-size: var(--text-2xl); }
+      .t-xl { font-size: var(--text-xl); }
+      .t-lg { font-size: var(--text-lg); }
+      .t-base { font-size: var(--text-base); }
+      .t-sm { font-size: var(--text-sm); }
+      .t-xs { font-size: var(--text-xs); }
+
+      .sp-3xs { width: var(--space-3xs); }
+      .sp-2xs { width: var(--space-2xs); }
+      .sp-xs { width: var(--space-xs); }
+      .sp-sm { width: var(--space-sm); }
+      .sp-md { width: var(--space-md); }
+      .sp-lg { width: var(--space-lg); }
+      .sp-xl { width: var(--space-xl); }
+      .sp-2xl { width: var(--space-2xl); }
+      .sp-3xl { width: var(--space-3xl); }
+      .sp-4xl { width: var(--space-4xl); }
+
+      .r-sm { border-radius: var(--radius-sm); }
+      .r-md { border-radius: var(--radius-md); }
+      .r-lg { border-radius: var(--radius-lg); }
+      .r-xl { border-radius: var(--radius-xl); }
+      .r-full { border-radius: var(--radius-full); }
+
+      .sh-sm { box-shadow: var(--shadow-sm); }
+      .sh-md { box-shadow: var(--shadow-md); }
+      .sh-lg { box-shadow: var(--shadow-lg); }
+    </style>
+  </head>
+
+  <body>
+    <header class="sg-page-header">
+      <h1>Design System — Style Guide</h1>
+      <p>
+        Every token and component, rendered in both themes (left: light, right: dark).
+        The whole system is driven by <code>styles/tokens.css</code> (D-26/D-27).
+      </p>
+    </header>
+
+    <div class="sg-panels">
+      <!-- LIGHT panel -->
+      <div class="sg-panel">
+        <p class="sg-panel__title">Light theme</p>
+
+        <section class="sg-section">
+          <h3>Colors</h3>
+          <div class="sg-swatches">
+            <div class="sg-swatch"><div class="sg-swatch__chip sw-bg"></div><div class="sg-swatch__meta"><span class="sg-label">--color-bg</span></div></div>
+            <div class="sg-swatch"><div class="sg-swatch__chip sw-surface"></div><div class="sg-swatch__meta"><span class="sg-label">--color-surface</span></div></div>
+            <div class="sg-swatch"><div class="sg-swatch__chip sw-surface-2"></div><div class="sg-swatch__meta"><span class="sg-label">--color-surface-2</span></div></div>
+            <div class="sg-swatch"><div class="sg-swatch__chip sw-text"></div><div class="sg-swatch__meta"><span class="sg-label">--color-text</span></div></div>
+            <div class="sg-swatch"><div class="sg-swatch__chip sw-text-muted"></div><div class="sg-swatch__meta"><span class="sg-label">--color-text-muted</span></div></div>
+            <div class="sg-swatch"><div class="sg-swatch__chip sw-text-subtle"></div><div class="sg-swatch__meta"><span class="sg-label">--color-text-subtle</span></div></div>
+            <div class="sg-swatch"><div class="sg-swatch__chip sw-border"></div><div class="sg-swatch__meta"><span class="sg-label">--color-border</span></div></div>
+            <div class="sg-swatch"><div class="sg-swatch__chip sw-border-strong"></div><div class="sg-swatch__meta"><span class="sg-label">--color-border-strong</span></div></div>
+            <div class="sg-swatch"><div class="sg-swatch__chip sw-accent"></div><div class="sg-swatch__meta"><span class="sg-label">--color-accent</span></div></div>
+            <div class="sg-swatch"><div class="sg-swatch__chip sw-accent-hover"></div><div class="sg-swatch__meta"><span class="sg-label">--color-accent-hover</span></div></div>
+            <div class="sg-swatch"><div class="sg-swatch__chip sw-on-accent"></div><div class="sg-swatch__meta"><span class="sg-label">--color-on-accent</span></div></div>
+            <div class="sg-swatch"><div class="sg-swatch__chip sw-accent-surface"></div><div class="sg-swatch__meta"><span class="sg-label">--color-accent-surface</span></div></div>
+            <div class="sg-swatch"><div class="sg-swatch__chip sw-secondary"></div><div class="sg-swatch__meta"><span class="sg-label">--color-secondary</span></div></div>
+            <div class="sg-swatch"><div class="sg-swatch__chip sw-secondary-text"></div><div class="sg-swatch__meta"><span class="sg-label">--color-secondary-text</span></div></div>
+          </div>
+        </section>
+
+        <section class="sg-section">
+          <h3>Type scale</h3>
+          <div class="sg-stack">
+            <p class="t-6xl">Display 6xl</p>
+            <p class="t-5xl">Heading 5xl</p>
+            <p class="t-4xl">Heading 4xl</p>
+            <p class="t-3xl">Heading 3xl</p>
+            <p class="t-2xl">Heading 2xl</p>
+            <p class="t-xl">Subtitle xl</p>
+            <p class="t-lg">Lead lg</p>
+            <p class="t-base">Body base — the quick brown fox.</p>
+            <p class="t-sm">Small sm — supporting copy.</p>
+            <p class="t-xs">Fine print xs.</p>
+          </div>
+        </section>
+
+        <section class="sg-section">
+          <h3>Spacing</h3>
+          <div class="sg-stack">
+            <div><span class="sg-label">--space-3xs</span><div class="sg-bar sp-3xs"></div></div>
+            <div><span class="sg-label">--space-2xs</span><div class="sg-bar sp-2xs"></div></div>
+            <div><span class="sg-label">--space-xs</span><div class="sg-bar sp-xs"></div></div>
+            <div><span class="sg-label">--space-sm</span><div class="sg-bar sp-sm"></div></div>
+            <div><span class="sg-label">--space-md</span><div class="sg-bar sp-md"></div></div>
+            <div><span class="sg-label">--space-lg</span><div class="sg-bar sp-lg"></div></div>
+            <div><span class="sg-label">--space-xl</span><div class="sg-bar sp-xl"></div></div>
+            <div><span class="sg-label">--space-2xl</span><div class="sg-bar sp-2xl"></div></div>
+            <div><span class="sg-label">--space-3xl</span><div class="sg-bar sp-3xl"></div></div>
+          </div>
+        </section>
+
+        <section class="sg-section">
+          <h3>Radii</h3>
+          <div class="sg-radii">
+            <div class="r-sm"></div><div class="r-md"></div><div class="r-lg"></div><div class="r-xl"></div><div class="r-full"></div>
+          </div>
+        </section>
+
+        <section class="sg-section">
+          <h3>Shadows</h3>
+          <div class="sg-row">
+            <div class="sg-shadow-box sh-sm"></div><div class="sg-shadow-box sh-md"></div><div class="sg-shadow-box sh-lg"></div>
+          </div>
+        </section>
+
+        <section class="sg-section">
+          <h3>Buttons</h3>
+          <div class="sg-row">
+            <button class="button button--primary" type="button">Primary</button>
+            <button class="button button--ghost" type="button">Ghost</button>
+            <button class="button button--sm button--primary" type="button">Small</button>
+          </div>
+        </section>
+
+        <section class="sg-section">
+          <h3>Section title</h3>
+          <p class="section__title">Experience</p>
+        </section>
+
+        <section class="sg-section">
+          <h3>Skill chips</h3>
+          <ul role="list" class="cluster skills">
+            <li class="skill">C++</li><li class="skill">Java</li><li class="skill">Python</li><li class="skill">Linux</li>
+          </ul>
+        </section>
+
+        <section class="sg-section">
+          <h3>Experience entry</h3>
+          <div class="role">
+            <div class="role__head">
+              <p class="role__title">Software Engineer, Raytheon GPNTS</p>
+              <p class="role__dates">05/2020 &ndash; 07/2022</p>
+            </div>
+            <dl class="role__meta">
+              <div class="role__meta-row"><dt>Languages</dt><dd>C++, Java, Python, C#</dd></div>
+            </dl>
+          </div>
+        </section>
+
+        <section class="sg-section">
+          <h3>Project card</h3>
+          <ul role="list" class="grid grid--cards projects">
+            <li>
+              <article class="project-card">
+                <div class="project-card__media">
+                  <img src="/assets/img/pong-thumbnail.png" alt="Sample project thumbnail" width="350" height="233" />
+                </div>
+                <div class="project-card__body stack">
+                  <p class="project-card__title">Pong</p>
+                  <p class="project-card__desc">Pong built entirely in React</p>
+                </div>
+              </article>
+            </li>
+          </ul>
+        </section>
+
+        <section class="sg-section">
+          <h3>Primary nav</h3>
+          <nav class="primary-nav" aria-label="Sample light">
+            <ul role="list" class="primary-nav__list">
+              <li><a class="primary-nav__link" href="#">About</a></li>
+              <li><a class="primary-nav__link" href="#" aria-current="true">Experience</a></li>
+              <li><a class="primary-nav__link" href="#">Projects</a></li>
+            </ul>
+          </nav>
+        </section>
+      </div>
+
+      <!-- DARK panel (same gallery; color-scheme: dark) -->
+      <div class="sg-panel sg-panel--dark">
+        <p class="sg-panel__title">Dark theme</p>
+
+        <section class="sg-section">
+          <h3>Colors</h3>
+          <div class="sg-swatches">
+            <div class="sg-swatch"><div class="sg-swatch__chip sw-bg"></div><div class="sg-swatch__meta"><span class="sg-label">--color-bg</span></div></div>
+            <div class="sg-swatch"><div class="sg-swatch__chip sw-surface"></div><div class="sg-swatch__meta"><span class="sg-label">--color-surface</span></div></div>
+            <div class="sg-swatch"><div class="sg-swatch__chip sw-surface-2"></div><div class="sg-swatch__meta"><span class="sg-label">--color-surface-2</span></div></div>
+            <div class="sg-swatch"><div class="sg-swatch__chip sw-text"></div><div class="sg-swatch__meta"><span class="sg-label">--color-text</span></div></div>
+            <div class="sg-swatch"><div class="sg-swatch__chip sw-text-muted"></div><div class="sg-swatch__meta"><span class="sg-label">--color-text-muted</span></div></div>
+            <div class="sg-swatch"><div class="sg-swatch__chip sw-text-subtle"></div><div class="sg-swatch__meta"><span class="sg-label">--color-text-subtle</span></div></div>
+            <div class="sg-swatch"><div class="sg-swatch__chip sw-border"></div><div class="sg-swatch__meta"><span class="sg-label">--color-border</span></div></div>
+            <div class="sg-swatch"><div class="sg-swatch__chip sw-border-strong"></div><div class="sg-swatch__meta"><span class="sg-label">--color-border-strong</span></div></div>
+            <div class="sg-swatch"><div class="sg-swatch__chip sw-accent"></div><div class="sg-swatch__meta"><span class="sg-label">--color-accent</span></div></div>
+            <div class="sg-swatch"><div class="sg-swatch__chip sw-accent-hover"></div><div class="sg-swatch__meta"><span class="sg-label">--color-accent-hover</span></div></div>
+            <div class="sg-swatch"><div class="sg-swatch__chip sw-on-accent"></div><div class="sg-swatch__meta"><span class="sg-label">--color-on-accent</span></div></div>
+            <div class="sg-swatch"><div class="sg-swatch__chip sw-accent-surface"></div><div class="sg-swatch__meta"><span class="sg-label">--color-accent-surface</span></div></div>
+            <div class="sg-swatch"><div class="sg-swatch__chip sw-secondary"></div><div class="sg-swatch__meta"><span class="sg-label">--color-secondary</span></div></div>
+            <div class="sg-swatch"><div class="sg-swatch__chip sw-secondary-text"></div><div class="sg-swatch__meta"><span class="sg-label">--color-secondary-text</span></div></div>
+          </div>
+        </section>
+
+        <section class="sg-section">
+          <h3>Type scale</h3>
+          <div class="sg-stack">
+            <p class="t-6xl">Display 6xl</p>
+            <p class="t-5xl">Heading 5xl</p>
+            <p class="t-4xl">Heading 4xl</p>
+            <p class="t-3xl">Heading 3xl</p>
+            <p class="t-2xl">Heading 2xl</p>
+            <p class="t-xl">Subtitle xl</p>
+            <p class="t-lg">Lead lg</p>
+            <p class="t-base">Body base — the quick brown fox.</p>
+            <p class="t-sm">Small sm — supporting copy.</p>
+            <p class="t-xs">Fine print xs.</p>
+          </div>
+        </section>
+
+        <section class="sg-section">
+          <h3>Spacing</h3>
+          <div class="sg-stack">
+            <div><span class="sg-label">--space-3xs</span><div class="sg-bar sp-3xs"></div></div>
+            <div><span class="sg-label">--space-2xs</span><div class="sg-bar sp-2xs"></div></div>
+            <div><span class="sg-label">--space-xs</span><div class="sg-bar sp-xs"></div></div>
+            <div><span class="sg-label">--space-sm</span><div class="sg-bar sp-sm"></div></div>
+            <div><span class="sg-label">--space-md</span><div class="sg-bar sp-md"></div></div>
+            <div><span class="sg-label">--space-lg</span><div class="sg-bar sp-lg"></div></div>
+            <div><span class="sg-label">--space-xl</span><div class="sg-bar sp-xl"></div></div>
+            <div><span class="sg-label">--space-2xl</span><div class="sg-bar sp-2xl"></div></div>
+            <div><span class="sg-label">--space-3xl</span><div class="sg-bar sp-3xl"></div></div>
+          </div>
+        </section>
+
+        <section class="sg-section">
+          <h3>Radii</h3>
+          <div class="sg-radii">
+            <div class="r-sm"></div><div class="r-md"></div><div class="r-lg"></div><div class="r-xl"></div><div class="r-full"></div>
+          </div>
+        </section>
+
+        <section class="sg-section">
+          <h3>Shadows</h3>
+          <div class="sg-row">
+            <div class="sg-shadow-box sh-sm"></div><div class="sg-shadow-box sh-md"></div><div class="sg-shadow-box sh-lg"></div>
+          </div>
+        </section>
+
+        <section class="sg-section">
+          <h3>Buttons</h3>
+          <div class="sg-row">
+            <button class="button button--primary" type="button">Primary</button>
+            <button class="button button--ghost" type="button">Ghost</button>
+            <button class="button button--sm button--primary" type="button">Small</button>
+          </div>
+        </section>
+
+        <section class="sg-section">
+          <h3>Section title</h3>
+          <p class="section__title">Experience</p>
+        </section>
+
+        <section class="sg-section">
+          <h3>Skill chips</h3>
+          <ul role="list" class="cluster skills">
+            <li class="skill">C++</li><li class="skill">Java</li><li class="skill">Python</li><li class="skill">Linux</li>
+          </ul>
+        </section>
+
+        <section class="sg-section">
+          <h3>Experience entry</h3>
+          <div class="role">
+            <div class="role__head">
+              <p class="role__title">Software Engineer, Raytheon GPNTS</p>
+              <p class="role__dates">05/2020 &ndash; 07/2022</p>
+            </div>
+            <dl class="role__meta">
+              <div class="role__meta-row"><dt>Languages</dt><dd>C++, Java, Python, C#</dd></div>
+            </dl>
+          </div>
+        </section>
+
+        <section class="sg-section">
+          <h3>Project card</h3>
+          <ul role="list" class="grid grid--cards projects">
+            <li>
+              <article class="project-card">
+                <div class="project-card__media">
+                  <img src="/assets/img/pong-thumbnail.png" alt="Sample project thumbnail" width="350" height="233" />
+                </div>
+                <div class="project-card__body stack">
+                  <p class="project-card__title">Pong</p>
+                  <p class="project-card__desc">Pong built entirely in React</p>
+                </div>
+              </article>
+            </li>
+          </ul>
+        </section>
+
+        <section class="sg-section">
+          <h3>Primary nav</h3>
+          <nav class="primary-nav" aria-label="Sample dark">
+            <ul role="list" class="primary-nav__list">
+              <li><a class="primary-nav__link" href="#">About</a></li>
+              <li><a class="primary-nav__link" href="#" aria-current="true">Experience</a></li>
+              <li><a class="primary-nav__link" href="#">Projects</a></li>
+            </ul>
+          </nav>
+        </section>
+      </div>
+    </div>
+  </body>
+</html>
