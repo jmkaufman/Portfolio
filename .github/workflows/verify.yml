@@ -30,17 +30,19 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       # --root-dir resolves the site's root-absolute links (/styles, /js, /assets)
-      # against the repo root so local assets aren't reported as broken. The site's
-      # own absolute URLs (jasonkaufman.dev / *.jasonkaufman.dev) and the bot-protected
-      # LinkedIn URL are excluded — validated post-deploy (docs/VERIFICATION.md), not
-      # against the undeployed apex during CI. (lychee does not check mailto by default.)
+      # against the repo root so local assets aren't reported as broken. Excluded:
+      # the apex/www self-references (circular to check in our own CI, and cert/deploy
+      # timing makes them flaky — validated post-deploy, docs/VERIFICATION.md) and the
+      # bot-protected LinkedIn URL. The pong.jasonkaufman.dev subdomain is a separate
+      # live deployment we depend on, so it is intentionally NOT excluded — CI verifies
+      # it. (lychee does not check mailto by default.)
       - name: Check links
         uses: lycheeverse/lychee-action@v2
         with:
           args: >-
             --no-progress
             --root-dir ${{ github.workspace }}
-            --exclude "jasonkaufman\.dev"
+            --exclude "^https://(www\.)?jasonkaufman\.dev/"
             --exclude "linkedin\.com"
             index.html
             404.html
