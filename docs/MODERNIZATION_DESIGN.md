@@ -90,7 +90,7 @@ Each decision has a stable ID (`D-NN`) referenced by the traceability matrix.
 | D-29 | Accessibility specifics | Under D-12: **skip-to-content link, visible `:focus-visible` indicators, alt-text discipline, accessible labels** (`aria-label`/visually-hidden) for inline SVG icons + theme toggle + nav, correct heading order, `aria-current` on active nav link | These are required to actually meet WCAG 2.1 AA; making them explicit lets the traceability matrix verify them rather than hope they're inferred | 2026-06-20 |
 | D-30 | UX additions | **Custom `404.html`**, **print stylesheet** (recruiters print/PDF portfolios), **graceful no-JS degradation** (content + default theme work without JS) | Low-cost polish; print + no-JS robustness reinforce D-05 | 2026-06-20 |
 | D-31 | Security posture (doc) | Under D-20: record that **meta-CSP cannot express `frame-ancestors`/reporting** (clickjacking N/A — no auth/state-changing actions); **`.dev` TLD gives browser-enforced HSTS** via preload list; **mailto is plain/un-obfuscated** (accepts modest harvesting exposure for one-click contact that works incl. no-JS; relies on provider spam filtering). Hosting stays GitHub Pages + meta CSP (**D-02 reaffirmed**) | meta-CSP gap is the one protection a no-login static portfolio least needs; staying on GH Pages keeps maximum simplicity | 2026-06-20 |
-| D-32 | Deploy source | GitHub Pages serves from the **root of a dedicated deploy branch**; development on a separate working branch | Clean source/published split; site files at branch root | 2026-06-20 |
+| D-32 | Deploy source | Serve GitHub Pages directly from the **`master` branch root** — no separate deploy branch (revised 2026-07-02; originally a dedicated `gh-pages` branch) | Zero-build means source == published (D-03), so a dedicated deploy branch only adds sync/drift overhead; serving from `master` gives one protected source of truth | 2026-06-20, rev. 2026-07-02 |
 | D-33 | Local dev server | **VS Code Live Server** (Go Live, auto-reload); no project dependency. `npx serve` / `python -m http.server` documented as alternatives | Serves over `http://` (needed for ES modules) with zero shipped dependency | 2026-06-20 |
 | D-34 | Design carry-over | **Clean redesign, migrate content only** — bring text/links/thumbnail forward; drop old cream `#f8f0e3` bg, CSS timeline motif, LinkedIn-blue accent; design fresh per D-16 | Existing visual design underuses the chosen "modern & bold" direction | 2026-06-20 |
 | D-35 | CI verification | **GitHub Actions workflow** runs the D-23 checks (Lighthouse, HTML validation, link-check) on each push/PR | Free (unlimited for public repos); tools run in the ephemeral runner, adding nothing to the repo/shipped site | 2026-06-20 |
@@ -148,7 +148,7 @@ Each decision has a stable ID (`D-NN`) referenced by the traceability matrix.
 | D-20, D-31 | T-10 | Security hardening (meta CSP, `rel=noopener`, plain mailto, posture docs) | `index.html` head + links | ✅ |
 | D-12, D-29 | T-11 | Accessibility pass | skip-link, focus styles, ARIA labels, alt text across HTML/CSS/JS | ✅ |
 | D-27 | T-12 | Style guide page | `styleguide.html` | ✅ |
-| D-02, D-25, D-30, D-32 | T-13 | Deploy config (CNAME, 404, deploy-branch root) | `CNAME`, `404.html`, GH Pages settings | ✅ (settings documented in docs/DEPLOY.md) |
+| D-02, D-25, D-30, D-32 | T-13 | Deploy config (CNAME, 404, master-root serving) | `CNAME`, `404.html`, GH Pages settings | ✅ (settings documented in docs/DEPLOY.md) |
 | D-23, D-33 | T-14 | Verification (local preview, Lighthouse, HTML/link checks) | check results | ✅ (local in docs/VERIFICATION.md; tool suite in CI) |
 | D-35 | T-15 | CI workflow | `.github/workflows/verify.yml` | ✅ (runs on push/PR) |
 | D-22 | — | No analytics (absence verified) | (no analytics scripts present) | N/A |
@@ -165,3 +165,4 @@ Each decision has a stable ID (`D-NN`) referenced by the traceability matrix.
 | 2026-06-20 | Visual round (D-16–D-18) + engineering & ops round (D-19–D-25) recorded |
 | 2026-06-20 | Designer-friendliness (D-26, D-27) + HTML reuse (D-28) recorded |
 | 2026-06-20 | Planning phase: formalized gaps + deferred items (D-29–D-36); matrix populated; design complete |
+| 2026-07-02 | D-32 revised: serve GitHub Pages from the `master` root instead of a dedicated `gh-pages` branch (zero-build → source == published; single source of truth) |

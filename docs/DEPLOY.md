@@ -1,32 +1,37 @@
 # Deployment
 
 The site is static and zero-build (D-03): the repository root **is** the published
-site, so there is nothing to compile. Hosting is GitHub Pages at the custom domain
-`jasonkaufman.dev` (D-02, D-25).
+site, so there is nothing to compile. GitHub Pages serves it **directly from the
+`master` branch root** at the custom domain `jasonkaufman.dev` (D-02, D-25, D-32).
 
-## Branch model (D-32)
+## Branch model (D-32, revised 2026-07-02)
 
-- **Working branch** — development happens here (currently `Refactoring`; merge to
-  `master` when a set of changes is ready).
-- **`gh-pages`** — the dedicated deploy branch GitHub Pages serves from, at its root.
+`master` is both the source of truth and the published branch — appropriate for a
+zero-build site where source == published (a separate deploy branch would only add
+sync/drift overhead). Develop on short-lived feature branches, open a pull request into
+`master`, let the `Verify` CI (Lighthouse + HTML validation + link-check) gate it, and
+merge. **Merging to `master` publishes** — GitHub Pages redeploys automatically.
 
-Keeping the published branch separate from the working branch gives a clean
-source/published split.
-
-## One-time GitHub Pages settings (GitHub web UI — cannot be scripted)
+## One-time GitHub Pages settings (GitHub web UI)
 
 1. Repo → **Settings → Pages**.
 2. **Build and deployment → Source:** *Deploy from a branch*.
-3. **Branch:** `gh-pages`, folder **`/ (root)`** → Save.
-4. **Custom domain:** `jasonkaufman.dev` (this is also pinned by the `CNAME` file in
-   the repo). Tick **Enforce HTTPS** once the certificate is issued.
+3. **Branch:** `master`, folder **`/ (root)`** → Save.
+4. **Custom domain:** `jasonkaufman.dev` (pinned by the `CNAME` file at the repo root).
+   Tick **Enforce HTTPS** once the certificate is issued.
 
-`.nojekyll` is committed at the root so Pages serves the files verbatim instead of
-running them through Jekyll.
+`.nojekyll` at the root makes Pages serve the files verbatim instead of running Jekyll.
 
-## DNS (registrar for jasonkaufman.dev)
+## Recommended branch protection (`master`)
 
-Point the apex domain at GitHub Pages:
+Since `master` publishes on merge, protect it: require a pull request and require the
+`Verify` status checks to pass before merging, and include administrators. Every change
+then flows feature-branch → PR (CI-gated) → `master` → live.
+
+## DNS (registrar: Squarespace Domains)
+
+The apex `jasonkaufman.dev` uses A/AAAA records pointing at GitHub Pages (a CNAME is
+invalid at the apex):
 
 ```
 A     @   185.199.108.153
@@ -37,36 +42,16 @@ AAAA  @   2606:50c0:8000::153
 AAAA  @   2606:50c0:8001::153
 AAAA  @   2606:50c0:8002::153
 AAAA  @   2606:50c0:8003::153
+CNAME www jmkaufman.github.io
 ```
 
-Optionally add `CNAME  www  jmkaufman.github.io.` for the `www` host. The `.dev` TLD
-is on the HSTS preload list, so browsers force HTTPS regardless (D-31).
-
-## Publishing
-
-From a clean working branch, mirror it to `gh-pages`:
-
-```bash
-git push origin master:gh-pages
-```
-
-(Use `Refactoring:gh-pages` until the work is merged to `master`.) Pages redeploys on
-each push. Dev-only files (`docs/`, `package.json`, lint configs) ride along but are
-never served meaningfully, and `.nojekyll` keeps the static files untouched.
-
-### Optional: a content-only deploy branch
-
-For a stricter split (only site files on `gh-pages`), publish from a throwaway
-worktree that contains just the served files:
-
-```bash
-git worktree add -B gh-pages ../portfolio-pages
-# in ../portfolio-pages: keep only index.html, 404.html, styleguide.html, CNAME,
-# robots.txt, sitemap.xml, manifest.webmanifest, .nojekyll, styles/, js/, assets/
-git -C ../portfolio-pages add -A && git -C ../portfolio-pages commit -m "Publish"
-git -C ../portfolio-pages push origin gh-pages
-git worktree remove ../portfolio-pages
-```
+`www` redirects to the apex (GitHub handles the redirect). The `pong` subdomain
+(`pong.jasonkaufman.dev` → its own AWS CloudFront distribution) is independent — leave
+that record in place, and keep the CloudFront distribution alive as long as the
+portfolio links to it. The `.dev` TLD is HSTS-preloaded, so browsers force HTTPS; GitHub
+provisions the Let's Encrypt certificate automatically once DNS verifies. If the Pages
+DNS check shows a stale failure right after a change, use **Check again** — it does not
+affect the live site.
 
 ## Verifying a deploy
 

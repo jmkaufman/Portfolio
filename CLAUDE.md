@@ -64,5 +64,7 @@ templating.
 
 ## Deploy
 
-Working branch → `gh-pages` (served at the root by GitHub Pages). See `docs/DEPLOY.md`
-for the publish commands, Pages settings, and DNS.
+GitHub Pages serves the site directly from the **`master` branch root** — zero-build,
+so source == published (D-32, revised). Develop on short-lived feature branches, open a
+PR into `master` (the `Verify` CI gates it), and merging auto-publishes. See
+`docs/DEPLOY.md` for Pages settings and DNS.
